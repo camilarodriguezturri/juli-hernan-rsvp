@@ -13,6 +13,13 @@
 </head>
 <body>
 
+<audio id="bg-music" loop preload="auto">
+  <source src="assets/cancion.mp3" type="audio/mpeg">
+</audio>
+<button id="music-toggle" type="button" aria-label="Reproducir música" aria-pressed="false">
+  <span id="music-icon">🎵</span>
+</button>
+
 <header class="hero">
   <div class="hero__inner">
     <p class="eyebrow">Nos casamos</p>
@@ -104,5 +111,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="music.js"></script>
 </body>
 </html>
