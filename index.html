@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juli &amp; Hernán — Nos Casamos</title>
+<meta name="description" content="Confirmá tu asistencia a la boda de Juli y Hernán — Sábado 26 de Diciembre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Monsieur+La+Doulaise&family=Miss+Fajardose&family=Pochaevsk&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__inner">
+    <p class="eyebrow">Nos casamos</p>
+    <h1 class="names">
+      <span class="name">Juli</span><span class="amp">y</span><span class="name">Hernán</span>
+    </h1>
+    <p class="subtitle">y queremos compartir este momento con vos</p>
+  </div>
+</header>
+
+<section class="date-strip">
+  <p>Sábado 26 de Diciembre de 2026</p>
+</section>
+
+<section class="location" id="ubicacion">
+  <h2>Ubicación</h2>
+  <svg class="flourish" viewBox="0 0 249 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M2 17c0-8 7-14 15-13 6 .8 9 6 6 10-2.5 3-8 3-10-.5-2-4 1-8.5 6-9.5 12-2.5 22 4 30 8.5 9 5 20 8 30 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M247 17c0-8-7-14-15-13-6 .8-9 6-6 10 2.5 3 8 3 10-.5 2-4-1-8.5-6-9.5-12-2.5-22 4-30 8.5-9 5-20 8-30 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </svg>
+  <p class="address">Av. Mitre 678 — Barrio Soles del Pilar</p>
+  <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Mitre+678+Barrio+Soles+del+Pilar" target="_blank" rel="noopener">
+    Ver en Google Maps
+  </a>
+</section>
+
+<section class="rsvp-intro">
+  <p>Nos encantaría contar con vos en este día tan especial. Completá el formulario con tus datos y contanos si vendrás acompañado/a.</p>
+  <p>Si querés sumar a alguien mayor de 18 años, por favor reenviale este formulario para que también confirme su asistencia (con permiso de los novios).</p>
+</section>
+
+<section class="rsvp-form-section" id="rsvp">
+  <h2>Confirmar asistencia</h2>
+
+  <form id="rsvp-form" novalidate>
+
+    <div class="field">
+      <label for="nombre">Nombre y apellido *</label>
+      <input type="text" id="nombre" name="nombre" required autocomplete="name">
+    </div>
+
+    <fieldset class="field field--radio">
+      <legend>¿Vas a poder acompañarnos? *</legend>
+      <label class="radio">
+        <input type="radio" name="asistencia" value="Sí, con alegría" required>
+        <span>Sí, con alegría</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="asistencia" value="No podré asistir" required>
+        <span>No podré asistir</span>
+      </label>
+    </fieldset>
+
+    <div class="field field--companions" id="companions-wrap" hidden>
+      <label for="acompanantes">¿Venís acompañado/a? Contanos cuántos (incluyéndote a vos)</label>
+      <select id="acompanantes" name="acompanantes">
+        <option value="1">Voy solo/a</option>
+        <option value="2">2 personas</option>
+        <option value="3">3 personas</option>
+        <option value="4">4 personas</option>
+        <option value="5">5 personas</option>
+      </select>
+    </div>
+
+    <div class="field field--companions" id="companion-names-wrap" hidden>
+      <label for="nombres_acompanantes">Nombre de tu/s acompañante/s</label>
+      <input type="text" id="nombres_acompanantes" name="nombres_acompanantes" placeholder="Ej: María Pérez">
+    </div>
+
+    <div class="field">
+      <label for="restricciones">¿Alguna alergia o restricción alimentaria?</label>
+      <input type="text" id="restricciones" name="restricciones" placeholder="Opcional">
+    </div>
+
+    <div class="field">
+      <label for="mensaje">Dejale un mensaje a los novios</label>
+      <textarea id="mensaje" name="mensaje" rows="3" placeholder="Opcional"></textarea>
+    </div>
+
+    <button type="submit" id="submit-btn">Confirmar asistencia</button>
+
+    <p class="form-note" id="form-success" hidden>¡Gracias! Recibimos tu confirmación. Nos vemos pronto 💛</p>
+    <p class="form-note form-note--error" id="form-error" hidden>Uy, algo falló al enviar. Probá de nuevo en unos segundos.</p>
+  </form>
+</section>
+
+<footer class="site-footer">
+  <p>Con amor, Juli &amp; Hernán</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
