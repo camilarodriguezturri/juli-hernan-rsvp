@@ -8,6 +8,7 @@
   if (!audio || !toggleBtn) return;
 
   let unlocked = false;
+  audio.volume = 0.2; // de fondo, sin saturar
 
   function setPlayingUI(isPlaying) {
     toggleBtn.setAttribute('aria-pressed', String(isPlaying));
