@@ -25,6 +25,7 @@ body {
 
 .hero {
   position: relative;
+  isolation: isolate;
   min-height: 92vh;
   display: flex;
   align-items: center;
@@ -32,18 +33,35 @@ body {
   padding: 3rem 1.5rem;
   text-align: center;
   color: var(--cream);
-  background:
-    radial-gradient(120% 90% at 15% 10%, rgba(168, 70, 90, 0.55), transparent 55%),
-    radial-gradient(110% 90% at 85% 0%, rgba(107, 122, 160, 0.6), transparent 60%),
-    radial-gradient(140% 100% at 50% 100%, rgba(217, 138, 138, 0.55), transparent 65%),
-    linear-gradient(160deg, #6b7aa0 0%, #a8657c 45%, #d9a58a 100%);
+  background: #6b7aa0; /* color de respaldo mientras carga el video */
   overflow: hidden;
+}
+
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(120% 90% at 15% 10%, rgba(168, 70, 90, 0.5), transparent 55%),
+    radial-gradient(110% 90% at 85% 0%, rgba(107, 122, 160, 0.55), transparent 60%),
+    radial-gradient(140% 100% at 50% 100%, rgba(217, 138, 138, 0.5), transparent 65%),
+    linear-gradient(160deg, rgba(107, 122, 160, 0.45) 0%, rgba(168, 101, 124, 0.45) 45%, rgba(217, 165, 138, 0.45) 100%);
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   background-image:
     radial-gradient(circle at 20% 30%, rgba(255,255,255,0.10) 0, transparent 3%),
     radial-gradient(circle at 70% 60%, rgba(255,255,255,0.08) 0, transparent 4%),
@@ -52,7 +70,7 @@ body {
   pointer-events: none;
 }
 
-.hero__inner { position: relative; z-index: 1; max-width: 900px; }
+.hero__inner { position: relative; z-index: 3; max-width: 900px; }
 
 .eyebrow {
   font-family: 'Pochaevsk', serif;
