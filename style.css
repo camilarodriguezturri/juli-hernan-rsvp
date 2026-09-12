@@ -121,14 +121,47 @@ body {
 
 .date-strip {
   text-align: center;
-  padding: 2.2rem 1.5rem;
+  padding: 3.5rem 1.5rem;
   border-bottom: 2px solid var(--line);
 }
 
-.date-strip p {
+.save-date-frame {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2.6rem 2.4rem 2.8rem;
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: 5px;
+}
+
+.save-date-frame .flourish--date {
+  display: block;
+  width: 130px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 1.1rem;
+  color: var(--ink);
+}
+
+.save-date-text {
   margin: 0;
   font-size: clamp(1.2rem, 3vw, 1.8rem);
+  letter-spacing: 0.03em;
 }
+
+.corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  color: var(--ink);
+}
+
+.corner--tl { top: -1px; left: -1px; }
+.corner--tr { top: -1px; right: -1px; transform: scaleX(-1); }
+.corner--bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
+.corner--br { bottom: -1px; right: -1px; transform: scale(-1, -1); }
 
 /* ---------- Location ---------- */
 
