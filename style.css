@@ -121,7 +121,7 @@ body {
 
 .date-strip {
   text-align: center;
-  padding: 1.6rem 0.9rem;
+  padding: 0.5rem 0.4rem;
   border-bottom: 2px solid var(--line);
 }
 
@@ -143,15 +143,15 @@ body {
 
 .save-date-frame__content {
   position: relative;
-  padding: 2.6rem 1.6rem 2.8rem;
+  padding: 1rem 1rem 1.1rem;
 }
 
 .save-date-frame .flourish--date {
   display: block;
-  width: 130px;
+  width: 110px;
   max-width: 100%;
   height: auto;
-  margin: 0 auto 1.1rem;
+  margin: 0 auto 0.6rem;
   color: var(--ink);
 }
 

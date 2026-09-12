@@ -58,8 +58,8 @@
     svg.setAttribute('width', w);
     svg.setAttribute('height', h);
 
-    const cornerSize = Math.max(24, Math.min(48, w * 0.09));
-    const gap = 6;
+    const cornerSize = Math.max(7, Math.min(13, w * 0.018));
+    const gap = 3;
 
     outer.setAttribute('d', roundedFlourishPath(w, h, cornerSize));
 
@@ -69,7 +69,7 @@
     );
     inner.setAttribute(
       'd',
-      roundedFlourishPath(w - gap * 2, h - gap * 2, Math.max(16, cornerSize - gap * 1.4))
+      roundedFlourishPath(w - gap * 2, h - gap * 2, Math.max(5, cornerSize - gap))
     );
   }
 
