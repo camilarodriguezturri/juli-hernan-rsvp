@@ -1,24 +1,23 @@
-// ⚠️ Reemplazá esta URL por la de tu Google Apps Script Web App
-// (Extensiones > Apps Script > Implementar > Nueva implementación > Aplicación web).
+// URL de la Web App de Google Apps Script que escribe en la planilla del cliente.
+// (Extensiones > Apps Script > Implementar > Gestionar implementaciones.)
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1G0TxAklDn_VqBO2cArN2dWUHh-_ShX_DkEjD2U9gu3I1NZySBk6Gn2ETQXu2ujY/exec";
 
 const form = document.getElementById('rsvp-form');
 const submitBtn = document.getElementById('submit-btn');
 const successMsg = document.getElementById('form-success');
 const errorMsg = document.getElementById('form-error');
+const attendingOnly = document.getElementById('attending-only');
+const SUBMIT_LABEL = submitBtn.textContent;
 
-const attendanceRadios = form.querySelectorAll('input[name="asistencia"]');
-const companionsWrap = document.getElementById('companions-wrap');
-const companionNamesWrap = document.getElementById('companion-names-wrap');
-
-function updateCompanionFields() {
+// Las preguntas de comida y niños sólo tienen sentido si la persona viene.
+function updateAttendingFields() {
   const selected = form.querySelector('input[name="asistencia"]:checked');
-  const attending = selected && selected.value.startsWith('Sí');
-  companionsWrap.hidden = !attending;
-  companionNamesWrap.hidden = !attending;
+  attendingOnly.hidden = !(selected && selected.value.startsWith('Sí'));
 }
 
-attendanceRadios.forEach((radio) => radio.addEventListener('change', updateCompanionFields));
+form.querySelectorAll('input[name="asistencia"]').forEach((radio) => {
+  radio.addEventListener('change', updateAttendingFields);
+});
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -30,15 +29,17 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  if (APPS_SCRIPT_URL.includes('PEGA_AQUI')) {
-    errorMsg.textContent = 'El formulario todavía no está conectado a la planilla (falta configurar la URL de Apps Script).';
-    errorMsg.hidden = false;
-    return;
-  }
-
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-  data.fecha = new Date().toISOString();
+  const attending = !attendingOnly.hidden;
+  const data = {
+    fecha: new Date().toISOString(),
+    nombre: form.nombre.value.trim(),
+    asistencia: form.querySelector('input[name="asistencia"]:checked').value,
+    restricciones: attending
+      ? Array.from(form.querySelectorAll('input[name="restricciones"]:checked')).map((c) => c.value).join(', ')
+      : '',
+    restriccion_especifica: attending ? form.restriccion_especifica.value.trim() : '',
+    ninos: attending ? (form.ninos.value || '0') : '',
+  };
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Enviando...';
@@ -55,11 +56,11 @@ form.addEventListener('submit', async (event) => {
 
     successMsg.hidden = false;
     form.reset();
-    updateCompanionFields();
+    updateAttendingFields();
   } catch (err) {
     errorMsg.hidden = false;
   } finally {
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Confirmar asistencia';
+    submitBtn.textContent = SUBMIT_LABEL;
   }
 });

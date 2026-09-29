@@ -5,11 +5,20 @@ Sitio de una sola página para la invitación de boda, con formulario de confirm
 ## Estructura
 
 ```
-index.html         → contenido y estructura de la página
+index.html          → contenido: sobre de bienvenida, portada, invitación + calendario,
+                      programa, ubicación, vestimenta, confirmación y cierre
 style.css           → estilos (paleta, tipografías, layout)
+envelope.js         → sobres que se abren (intro y calendario) y armado del calendario
+frame.js            → marco decorativo con esquinas en muesca (portada)
 script.js           → lógica del formulario (envío a Google Sheets)
+music.js            → música de fondo
 apps-script/Code.gs → backend (Google Apps Script) que recibe el formulario y escribe en la planilla
+assets/icons/       → íconos del programa (exportados del Figma, "Posibles Piezas" / Page 5)
+assets/ornaments/   → ornamentos vectoriales del Figma
 ```
+
+Tipografías: Monsieur La Doulaise (títulos en cursiva y nombres), Cormorant Garamond
+(fechas y subtítulos) y Pochaevsk (texto de cuerpo). Colores: rosa `#E5989B`, crema `#F0EAD6`.
 
 ## Cómo conectar el formulario a Google Sheets
 

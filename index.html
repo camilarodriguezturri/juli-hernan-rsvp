@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juli &amp; Hernán — Nos Casamos</title>
-<meta name="description" content="Confirmá tu asistencia a la boda de Juli y Hernán — Sábado 26 de Diciembre.">
+<meta name="description" content="Juli y Hernán se casan el sábado 26 de diciembre de 2026. Confirmá tu asistencia.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Juli &amp; Hernán — Nos Casamos">
@@ -20,9 +20,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Monsieur+La+Doulaise&family=Miss+Fajardose&family=Pochaevsk&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Monsieur+La+Doulaise&family=Pochaevsk&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/sobre-cerrado.webp">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:,">
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
 <body>
 
@@ -33,117 +35,238 @@
   <span id="music-icon">🎵</span>
 </button>
 
-<header class="hero">
+<!-- ============ 1. Sobre de bienvenida ============ -->
+<div class="intro" id="intro">
+  <div class="intro__inner">
+    <div class="env env--intro" data-env>
+      <button class="env__hit" type="button" aria-label="Abrir el sobre"></button>
+      <img class="env__closed" src="assets/sobre-cerrado.webp" alt="" width="900" height="645">
+      <img class="env__seal" src="assets/sello.svg" alt="" width="220" height="220">
+      <div class="env__open" aria-hidden="true">
+        <img class="env__back" src="assets/sobre-abierto.webp" alt="" width="900" height="975">
+        <div class="env__letter-clip">
+          <div class="env__letter">
+            <img src="assets/papel-puntilla.webp" alt="" width="900" height="1021">
+            <div class="env__letter-content letter-names">
+              <span class="letter-names__script">Juli y Hernán</span>
+              <span class="letter-names__date">26 . 12 . 2026</span>
+            </div>
+          </div>
+        </div>
+        <img class="env__front" src="assets/sobre-abierto.webp" alt="" width="900" height="975">
+      </div>
+    </div>
+    <p class="intro__hint">Presioná el sobre para abrirlo</p>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ 2. Portada: video + marco con la foto ============ -->
+<header class="hero" id="inicio">
   <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
     <source src="assets/hero-video.mp4" type="video/mp4">
   </video>
   <div class="hero-tint" aria-hidden="true"></div>
   <div class="hero__inner">
     <p class="eyebrow">Nos casamos</p>
-    <h1 class="names">
-      <span class="name">Juli</span><span class="amp">y</span><span class="name">Hernán</span>
-    </h1>
-    <p class="subtitle">y queremos compartir este momento con vos</p>
+    <span class="orn orn--fleurons hero__orn" aria-hidden="true"></span>
+    <h1 class="names">Juli <span class="names__y">y</span> Hernán</h1>
+    <span class="orn orn--fleurons orn--flip hero__orn" aria-hidden="true"></span>
+
+    <div class="deco-frame hero-frame">
+      <svg class="deco-frame__svg" aria-hidden="true">
+        <path class="deco-frame__outer" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path class="deco-frame__inner" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      </svg>
+      <div class="deco-frame__content">
+        <img class="hero-frame__photo" src="assets/ramo.jpg" alt="Ramo de flores en la mano de la novia" width="854" height="1280">
+        <p class="hero-frame__date">26 . 12 . 2026</p>
+      </div>
+    </div>
   </div>
 </header>
 
-<section class="date-strip">
-  <div class="save-date-frame">
-    <svg class="save-date-frame__svg" aria-hidden="true">
-      <path class="save-date-frame__outer" fill="none" stroke="currentColor" stroke-width="1.3"/>
-      <path class="save-date-frame__inner" fill="none" stroke="currentColor" stroke-width="1.3"/>
-    </svg>
-    <div class="save-date-frame__content">
-      <svg class="flourish flourish--date" viewBox="0 0 200 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M4 11c0-5 5-7 8-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M13 9.5L86 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M100 4l7 7-7 7-7-7z" fill="currentColor"/>
-        <path d="M114 11l73 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M188 7c3-3 8-1 8 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+<!-- ============ 3. Invitación + calendario en el sobre ============ -->
+<section class="invite pink" id="invitacion">
+  <span class="emboss emboss--top" aria-hidden="true"><span class="orn orn--cluster"></span></span>
+
+  <h2 class="invite__title">Nos encantaría contar con vos en este día tan especial</h2>
+  <p class="invite__text">Queremos compartir con las personas que más queremos el comienzo de esta nueva etapa. Te esperamos para celebrar juntos el día en que nos decimos que sí.</p>
+
+  <div class="env env--calendar" data-env>
+    <button class="env__hit" type="button" aria-label="Abrir el sobre para ver el calendario"></button>
+    <img class="env__closed" src="assets/sobre-cerrado.webp" alt="" width="900" height="645" loading="lazy">
+    <img class="env__seal" src="assets/sello.svg" alt="" width="220" height="220" loading="lazy">
+    <div class="env__open">
+      <img class="env__back" src="assets/sobre-abierto.webp" alt="" width="900" height="975" loading="lazy">
+      <div class="env__letter-clip">
+        <div class="env__letter">
+          <img src="assets/papel-puntilla.webp" alt="" width="900" height="1021" loading="lazy">
+          <div class="env__letter-content">
+            <div class="cal" role="table" aria-label="Calendario de diciembre de 2026, el sábado 26 marcado con un corazón">
+              <p class="cal__month">Diciembre</p>
+              <p class="cal__year">2026</p>
+              <div class="cal__grid" id="cal-grid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img class="env__front" src="assets/sobre-abierto.webp" alt="" width="900" height="975" loading="lazy">
+    </div>
+    <span class="env__hand" aria-hidden="true">
+      <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 30V9a4 4 0 0 1 8 0v17"/>
+        <path d="M26 24a4 4 0 0 1 8 0v4"/>
+        <path d="M34 26a4 4 0 0 1 8 0v10c0 10-6 17-15 17h-2c-6 0-9-3-12-7l-7-10a4 4 0 0 1 6-5l4 4"/>
+        <path d="M10 6 6 3M14 3l-1-2M6 12H2" stroke-width="1.8"/>
       </svg>
-      <p class="save-date-text">Sábado 26 de Diciembre de 2026</p>
+    </span>
+  </div>
+
+  <a class="invite__cta" href="#programa">
+    <span>Revisá el programa de nuestra boda</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+
+  <span class="emboss emboss--bottom" aria-hidden="true"><span class="orn orn--cluster orn--flip"></span></span>
+</section>
+
+<!-- ============ 4. Programa ============ -->
+<section class="program cream" id="programa">
+  <h2 class="script-title">Programa</h2>
+  <span class="orn orn--heart program__orn" aria-hidden="true"></span>
+
+  <ol class="timeline">
+    <li class="timeline__item">
+      <img class="timeline__icon" src="assets/icons/bienvenida.svg" alt="" width="240" height="240" loading="lazy">
+      <span class="timeline__dot" aria-hidden="true"></span>
+      <div class="timeline__text"><span class="timeline__time">18:30 hs</span><span class="timeline__label">Bienvenida</span></div>
+    </li>
+    <li class="timeline__item timeline__item--rev">
+      <img class="timeline__icon" src="assets/icons/ceremonia.svg" alt="" width="240" height="240" loading="lazy">
+      <span class="timeline__dot" aria-hidden="true"></span>
+      <div class="timeline__text"><span class="timeline__time">19:00 hs</span><span class="timeline__label">Ceremonia</span></div>
+    </li>
+    <li class="timeline__item">
+      <img class="timeline__icon" src="assets/icons/recepcion.svg" alt="" width="240" height="240" loading="lazy">
+      <span class="timeline__dot" aria-hidden="true"></span>
+      <div class="timeline__text"><span class="timeline__time">19:30 hs</span><span class="timeline__label">Recepción</span></div>
+    </li>
+    <li class="timeline__item timeline__item--rev">
+      <img class="timeline__icon" src="assets/icons/cena.svg" alt="" width="240" height="240" loading="lazy">
+      <span class="timeline__dot" aria-hidden="true"></span>
+      <div class="timeline__text"><span class="timeline__time">20:30 hs</span><span class="timeline__label">Cena y fiesta</span></div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ 5. Ubicación ============ -->
+<section class="location pink" id="ubicacion">
+  <span class="emboss emboss--top" aria-hidden="true"><span class="orn orn--fleurons"></span></span>
+  <h2 class="script-title">Ubicación</h2>
+  <p class="location__day">Sábado 26 de diciembre · 18:30 hs</p>
+  <p class="location__address">Avenida Triunvirato 6386, CABA</p>
+  <a class="btn-outline" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Triunvirato+6386%2C+CABA%2C+Argentina" target="_blank" rel="noopener">Ver en Google Maps</a>
+  <span class="emboss emboss--bottom" aria-hidden="true"><span class="orn orn--fleurons orn--flip"></span></span>
+</section>
+
+<!-- ============ 6. Vestimenta (sobre la hoja de encaje) ============ -->
+<section class="dress" id="vestimenta">
+  <video class="dress__video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-tint" aria-hidden="true"></div>
+  <div class="dress__sheet">
+    <img class="dress__lace" src="assets/hoja-encaje.webp" alt="" width="1000" height="1416" loading="lazy">
+    <div class="dress__content">
+      <h2 class="script-title">Vestimenta</h2>
+      <span class="orn orn--heart dress__orn" aria-hidden="true"></span>
+      <p>Nos encantaría verte con ropa elegante de noche para celebrar juntos este día tan especial.</p>
+      <p class="dress__code">Elegante · Noche</p>
     </div>
   </div>
 </section>
 
-<section class="location" id="ubicacion">
-  <h2>Ubicación</h2>
-  <svg class="flourish" viewBox="0 0 249 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M2 17c0-8 7-14 15-13 6 .8 9 6 6 10-2.5 3-8 3-10-.5-2-4 1-8.5 6-9.5 12-2.5 22 4 30 8.5 9 5 20 8 30 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-    <path d="M247 17c0-8-7-14-15-13-6 .8-9 6-6 10 2.5 3 8 3 10-.5 2-4-1-8.5-6-9.5-12-2.5-22 4-30 8.5-9 5-20 8-30 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-  </svg>
-  <p class="address">Av. Mitre 678 — Barrio Soles del Pilar</p>
-  <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Mitre+678+Barrio+Soles+del+Pilar" target="_blank" rel="noopener">
-    Ver en Google Maps
-  </a>
-</section>
-
-<section class="rsvp-intro">
-  <p>Nos encantaría contar con vos en este día tan especial. Completá el formulario con tus datos y contanos si vendrás acompañado/a.</p>
-  <p>Si querés sumar a alguien mayor de 18 años, por favor reenviale este formulario para que también confirme su asistencia (con permiso de los novios).</p>
-</section>
-
-<section class="rsvp-form-section" id="rsvp">
-  <h2>Confirmar asistencia</h2>
+<!-- ============ 7. Confirmación ============ -->
+<section class="rsvp cream" id="rsvp">
+  <h2 class="script-title">Confirmá tu asistencia</h2>
+  <p class="rsvp__lead">¡Estás invitad@! Contanos si vas a poder acompañarnos.</p>
 
   <form id="rsvp-form" novalidate>
-
     <div class="field">
-      <label for="nombre">Nombre y apellido *</label>
+      <label for="nombre">Tu nombre *</label>
       <input type="text" id="nombre" name="nombre" required autocomplete="name">
     </div>
 
-    <fieldset class="field field--radio">
-      <legend>¿Vas a poder acompañarnos? *</legend>
-      <label class="radio">
-        <input type="radio" name="asistencia" value="Sí, con alegría" required>
-        <span>Sí, con alegría</span>
+    <fieldset class="field">
+      <legend>¿Vas a asistir a la boda? *</legend>
+      <label class="choice">
+        <input type="radio" name="asistencia" value="Sí, con gusto" required>
+        <span>Sí, con gusto</span>
       </label>
-      <label class="radio">
+      <label class="choice">
         <input type="radio" name="asistencia" value="No podré asistir" required>
         <span>No podré asistir</span>
       </label>
     </fieldset>
 
-    <div class="field field--companions" id="companions-wrap" hidden>
-      <label for="acompanantes">¿Venís acompañado/a? Contanos cuántos (incluyéndote a vos)</label>
-      <select id="acompanantes" name="acompanantes">
-        <option value="1">Voy solo/a</option>
-        <option value="2">2 personas</option>
-        <option value="3">3 personas</option>
-        <option value="4">4 personas</option>
-        <option value="5">5 personas</option>
-      </select>
+    <div class="attending-only" id="attending-only" hidden>
+      <fieldset class="field">
+        <legend>Restricciones alimentarias o alergias</legend>
+        <label class="choice choice--check">
+          <input type="checkbox" name="restricciones" value="Vegetariano">
+          <span>Vegetariano</span>
+        </label>
+        <label class="choice choice--check">
+          <input type="checkbox" name="restricciones" value="Vegano">
+          <span>Vegano</span>
+        </label>
+        <label class="choice choice--check">
+          <input type="checkbox" name="restricciones" value="Celíaco">
+          <span>Celíaco</span>
+        </label>
+      </fieldset>
+
+      <div class="field">
+        <label for="restriccion_especifica">¿Alguna restricción/alergia alimentaria específica?</label>
+        <input type="text" id="restriccion_especifica" name="restriccion_especifica">
+      </div>
+
+      <div class="field">
+        <label for="ninos">¿Cuántos niños te acompañarían?</label>
+        <input type="number" id="ninos" name="ninos" min="0" max="10" inputmode="numeric" placeholder="0">
+      </div>
     </div>
 
-    <div class="field field--companions" id="companion-names-wrap" hidden>
-      <label for="nombres_acompanantes">Nombre de tu/s acompañante/s</label>
-      <input type="text" id="nombres_acompanantes" name="nombres_acompanantes" placeholder="Ej: María Pérez">
-    </div>
+    <button type="submit" id="submit-btn">Enviar</button>
 
-    <div class="field">
-      <label for="restricciones">¿Alguna alergia o restricción alimentaria?</label>
-      <input type="text" id="restricciones" name="restricciones" placeholder="Opcional">
-    </div>
-
-    <div class="field">
-      <label for="mensaje">Dejale un mensaje a los novios</label>
-      <textarea id="mensaje" name="mensaje" rows="3" placeholder="Opcional"></textarea>
-    </div>
-
-    <button type="submit" id="submit-btn">Confirmar asistencia</button>
-
-    <p class="form-note" id="form-success" hidden>¡Gracias! Recibimos tu confirmación. Nos vemos pronto 💛</p>
+    <p class="form-note" id="form-success" hidden>¡Gracias! Recibimos tu confirmación. Nos vemos pronto.</p>
     <p class="form-note form-note--error" id="form-error" hidden>Uy, algo falló al enviar. Probá de nuevo en unos segundos.</p>
   </form>
+
+  <div class="rsvp__notes">
+    <p>Completá el formulario con tus datos y contanos si vendrás acompañado/a.</p>
+    <p>Si querés sumar a alguien mayor de 18 años, por favor reenviale este formulario para que también confirme su asistencia (con permiso de los novios).</p>
+  </div>
 </section>
 
-<footer class="site-footer">
-  <p>Con amor, Juli &amp; Hernán</p>
+<!-- ============ 8. Cierre ============ -->
+<footer class="closing" id="cierre">
+  <img class="closing__bg" src="assets/naturaleza.jpg" alt="" width="1200" height="598" loading="lazy">
+  <div class="closing__inner">
+    <p class="closing__with">Con amor,</p>
+    <p class="closing__names">Juli y Hernán</p>
+    <span class="orn orn--heart closing__orn" aria-hidden="true"></span>
+    <p class="closing__wait">¡Los esperamos!</p>
+  </div>
 </footer>
 
+</main>
+
+<script src="envelope.js"></script>
 <script src="script.js"></script>
 <script src="music.js"></script>
-<script src="save-date-frame.js"></script>
+<script src="frame.js"></script>
 </body>
 </html>
