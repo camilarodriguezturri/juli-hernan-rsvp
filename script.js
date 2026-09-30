@@ -6,18 +6,7 @@ const form = document.getElementById('rsvp-form');
 const submitBtn = document.getElementById('submit-btn');
 const successMsg = document.getElementById('form-success');
 const errorMsg = document.getElementById('form-error');
-const attendingOnly = document.getElementById('attending-only');
 const SUBMIT_LABEL = submitBtn.textContent;
-
-// Las preguntas de comida y niños sólo tienen sentido si la persona viene.
-function updateAttendingFields() {
-  const selected = form.querySelector('input[name="asistencia"]:checked');
-  attendingOnly.hidden = !(selected && selected.value.startsWith('Sí'));
-}
-
-form.querySelectorAll('input[name="asistencia"]').forEach((radio) => {
-  radio.addEventListener('change', updateAttendingFields);
-});
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -29,16 +18,13 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  const attending = !attendingOnly.hidden;
   const data = {
     fecha: new Date().toISOString(),
     nombre: form.nombre.value.trim(),
     asistencia: form.querySelector('input[name="asistencia"]:checked').value,
-    restricciones: attending
-      ? Array.from(form.querySelectorAll('input[name="restricciones"]:checked')).map((c) => c.value).join(', ')
-      : '',
-    restriccion_especifica: attending ? form.restriccion_especifica.value.trim() : '',
-    ninos: attending ? (form.ninos.value || '0') : '',
+    restricciones: Array.from(form.querySelectorAll('input[name="restricciones"]:checked')).map((c) => c.value).join(', '),
+    restriccion_especifica: form.restriccion_especifica.value.trim(),
+    ninos: form.ninos.value || '0',
   };
 
   submitBtn.disabled = true;
@@ -57,7 +43,6 @@ form.addEventListener('submit', async (event) => {
     successMsg.hidden = false;
     if (window.petals && data.asistencia.startsWith('Sí')) window.petals.burst(40);
     form.reset();
-    updateAttendingFields();
   } catch (err) {
     errorMsg.hidden = false;
   } finally {

@@ -82,11 +82,7 @@
   <span class="orn orn--flor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
   <h2 class="title" data-reveal>Ubicación</h2>
   <p class="body" data-reveal>Sábado 26 de diciembre · 18:30 hs<br>Avenida Triunvirato 6386, CABA</p>
-  <div class="btn-row" data-reveal>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Triunvirato+6386%2C+CABA%2C+Argentina" target="_blank" rel="noopener">Ver en Google Maps</a>
-    <a class="btn" id="gcal-link" href="#" target="_blank" rel="noopener">Agendar la fecha</a>
-  </div>
-  <button class="text-link" id="ics-link" type="button" data-reveal>¿Usás iPhone u Outlook? Descargá el evento</button>
+  <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Triunvirato+6386%2C+CABA%2C+Argentina" target="_blank" rel="noopener" data-reveal>Ver en Google Maps</a>
   <span class="orn orn--fleurons orn--flip sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
 </section>
 
@@ -102,26 +98,20 @@
   <span class="rule rule--light" data-reveal aria-hidden="true"></span>
   <p class="body body--wide" data-reveal>Queremos compartir con las personas que más queremos el comienzo de esta nueva etapa. Te esperamos para celebrar juntos el día en que nos decimos que sí.</p>
 
-  <div class="env" data-env data-reveal>
-    <button class="env__hit" type="button" aria-label="Abrir el sobre para ver el calendario"></button>
-    <img class="env__closed" src="assets/sobre-cerrado.webp" alt="" width="900" height="645" loading="lazy">
-    <div class="env__open">
-      <img class="env__back" src="assets/sobre-abierto.webp" alt="" width="900" height="975" loading="lazy">
-      <div class="env__letter-clip">
-        <div class="env__letter">
-          <img src="assets/papel-puntilla.webp" alt="" width="900" height="1021" loading="lazy">
-          <div class="env__letter-content">
-            <div class="cal" role="table" aria-label="Calendario de diciembre de 2026, el sábado 26 marcado con un corazón">
-              <p class="cal__month">Diciembre</p>
-              <p class="cal__year">2026</p>
-              <div class="cal__grid" id="cal-grid"></div>
-            </div>
-          </div>
-        </div>
+  <!-- SOBRE1 (Figma): cerrado → se abre con el calendario adentro → el calendario sale -->
+  <div class="sobre" data-sobre data-reveal>
+    <button class="sobre__hit" type="button" aria-label="Abrir el sobre para ver el calendario"></button>
+    <img class="sobre__cerrado" src="assets/sobre1-cerrado.webp" alt="" width="1000" height="926" loading="lazy">
+    <img class="sobre__fondo" src="assets/sobre1-fondo.webp" alt="" width="1000" height="926" loading="lazy">
+    <div class="sobre__cal" role="table" aria-label="Calendario de diciembre de 2026, el sábado 26 marcado con un corazón">
+      <img class="sobre__puntilla" src="assets/sobre1-puntilla.webp" alt="" width="900" height="851" loading="lazy">
+      <div class="sobre__papel">
+        <p class="cal__month">Diciembre</p>
+        <div class="cal__grid" id="cal-grid"></div>
       </div>
-      <img class="env__front" src="assets/sobre-abierto.webp" alt="" width="900" height="975" loading="lazy">
     </div>
-    <span class="env__hand" aria-hidden="true">
+    <img class="sobre__frente" src="assets/sobre1-frente.webp" alt="" width="1000" height="926" loading="lazy">
+    <span class="sobre__hand" aria-hidden="true">
       <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 30V9a4 4 0 0 1 8 0v17"/>
         <path d="M26 24a4 4 0 0 1 8 0v4"/>
@@ -195,23 +185,21 @@
       <label class="choice"><input type="radio" name="asistencia" value="No podré asistir" required><span>No podré asistir</span></label>
     </fieldset>
 
-    <div class="attending-only" id="attending-only" hidden>
-      <fieldset class="field">
-        <legend>¿Tenés alguna restricción alimentaria?</legend>
-        <label class="choice choice--check"><input type="checkbox" name="restricciones" value="Vegetariano"><span>Vegetariano</span></label>
-        <label class="choice choice--check"><input type="checkbox" name="restricciones" value="Vegano"><span>Vegano</span></label>
-        <label class="choice choice--check"><input type="checkbox" name="restricciones" value="Celíaco"><span>Celíaco</span></label>
-      </fieldset>
+    <fieldset class="field">
+      <legend>¿Tenés alguna restricción alimentaria?</legend>
+      <label class="choice choice--check"><input type="checkbox" name="restricciones" value="Vegetariano"><span>Vegetariano</span></label>
+      <label class="choice choice--check"><input type="checkbox" name="restricciones" value="Vegano"><span>Vegano</span></label>
+      <label class="choice choice--check"><input type="checkbox" name="restricciones" value="Celíaco"><span>Celíaco</span></label>
+    </fieldset>
 
-      <div class="field">
-        <label for="restriccion_especifica">¿Alguna alergia o restricción específica?</label>
-        <input type="text" id="restriccion_especifica" name="restriccion_especifica">
-      </div>
+    <div class="field">
+      <label for="restriccion_especifica">¿Alguna alergia o restricción específica?</label>
+      <input type="text" id="restriccion_especifica" name="restriccion_especifica">
+    </div>
 
-      <div class="field">
-        <label for="ninos">¿Te acompañan menores? ¿Cuántos?</label>
-        <input type="number" id="ninos" name="ninos" min="0" max="10" inputmode="numeric" placeholder="0">
-      </div>
+    <div class="field">
+      <label for="ninos">¿Te acompañan menores? ¿Cuántos?</label>
+      <input type="number" id="ninos" name="ninos" min="0" max="10" inputmode="numeric" placeholder="0">
     </div>
 
     <button type="submit" id="submit-btn" class="btn">Enviar</button>
@@ -228,12 +216,10 @@
 </section>
 
 <!-- ============ 08 · Cierre ============ -->
-<footer class="section closing" id="cierre">
+<footer class="closing" id="cierre">
   <img class="closing__bg" src="assets/flores-fondo.jpg" alt="" width="1000" height="1250" loading="lazy">
   <div class="invite__veil" aria-hidden="true"></div>
-  <p class="body" data-reveal>Con amor,</p>
-  <p class="closing__names" data-reveal>Juli &amp; Hernán</p>
-  <p class="detail detail--plain" data-reveal>¡Los esperamos!</p>
+  <p class="closing__text" data-reveal>Con amor, Juli &amp; Hernán</p>
 </footer>
 
 </main>

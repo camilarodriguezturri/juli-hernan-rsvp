@@ -37,7 +37,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .title {
   margin: 0;
-  max-width: 16ch;
+  max-width: 22ch;
   font-family: var(--body);
   font-weight: 400;
   font-size: clamp(2rem, 8.4vw, 3rem);
@@ -45,18 +45,18 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
   text-wrap: balance;
 }
-.title--wide { max-width: 20ch; }
+.title--wide { max-width: 24ch; }
 .title--rose { color: var(--rosa); }
 
 .body {
   margin: 0;
-  max-width: 34ch;
+  max-width: 30rem;                  /* en celular usa todo el ancho: menos líneas */
   font-size: clamp(1.02rem, 4.2vw, 1.2rem);
   line-height: 1.55;
   text-align: center;
   text-wrap: pretty;
 }
-.body--wide { max-width: 40ch; }
+.body--wide { max-width: 34rem; }
 
 .detail {
   margin: 0;
@@ -108,16 +108,14 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.6rem;
-  padding: 4.5rem 1.5rem;
+  gap: 2rem;
+  padding: 5rem 1.25rem 5.25rem;
   text-align: center;
 }
 .cream { background: var(--crema); color: var(--tinta); }
 .rose  { background: var(--rosa);  color: var(--crema); }
 
 /* ============ Botones ============ */
-
-.btn-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
 
 .btn {
   display: inline-flex;
@@ -135,18 +133,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .cream .btn:hover, .cream .btn:focus-visible { background: var(--tinta); color: var(--crema); }
 .btn:active { transform: scale(0.98); }
-
-.text-link {
-  border: 0;
-  background: none;
-  padding: 0;
-  font: inherit;
-  font-size: 0.92rem;
-  color: var(--rosa);
-  text-decoration: underline;
-  text-underline-offset: 0.25em;
-  cursor: pointer;
-}
 
 /* ============ 01 · Sobre de entrada ============ */
 
@@ -184,14 +170,15 @@ img { max-width: 100%; height: auto; display: block; }
 .intro__hint {
   position: absolute;
   left: 0; right: 0;
-  bottom: max(9vh, 3.5rem);
+  bottom: max(7vh, 2.5rem);
   margin: 0;
-  padding: 0 1rem;
-  font-family: var(--script);
-  font-size: clamp(2.3rem, 9.5vw, 3.4rem);
-  line-height: 1.1;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-family: var(--body);
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
   color: var(--tinta);
-  animation: breathe 2.8s ease-in-out infinite;
+  animation: breathe 3.2s ease-in-out infinite;
   transition: opacity 0.4s ease;
 }
 
@@ -199,7 +186,7 @@ img { max-width: 100%; height: auto; display: block; }
   0%, 100% { transform: translate(-50%, -50%) scale(1); }
   50% { transform: translate(-50%, -50%) scale(1.04); }
 }
-@keyframes breathe { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+@keyframes breathe { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.8; } }
 
 /* Al abrir: el sello se presiona y se quiebra, y el sobre se levanta */
 .intro.is-opening .intro__hint { opacity: 0; animation: none; }
@@ -266,7 +253,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
+  gap: 1.5rem;
 }
 
 .eyebrow {
@@ -404,143 +391,119 @@ img { max-width: 100%; height: auto; display: block; }
 @keyframes sway-r { 0%, 100% { transform: scaleX(-1) rotate(-2deg); } 50% { transform: scaleX(-1) rotate(2.5deg); } }
 
 .invite__hint {
-  margin: -0.6rem 0 0;
-  font-family: var(--script);
-  font-size: clamp(2rem, 8vw, 2.6rem);
-  line-height: 1;
+  margin: -1.2rem 0 0;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
   transition: opacity 0.4s ease;
 }
-.invite:has(.env[data-state="open"]) .invite__hint { opacity: 0; }
+.invite:has(.sobre[data-state]) .invite__hint { opacity: 0; }
 
-/* ---------- Sobre con el calendario ---------- */
+/* ---------- SOBRE1 (componente del Figma) ----------
+   Caja = 1078×1281 del componente; cada capa usa su posición en % dentro de él. */
 
-.env {
-  --w: min(88vw, 440px);
+.sobre {
+  --w: min(92vw, 460px);
   position: relative;
   width: var(--w);
-  aspect-ratio: 900 / 975;          /* caja = sobre abierto con la solapa arriba */
-  /* Cerrado: tapamos el hueco reservado para la solapa. Al abrir, el sobre
-     baja mientras la carta sube, y queda lugar para el calendario. */
-  margin-top: calc(0.4rem - var(--w) * 0.32);
-  transition: margin-top 1.3s var(--ease-out) 0.5s;
+  aspect-ratio: 1078 / 1281;
+  margin: -0.5rem 0 1rem;
 }
-.env[data-state="open"] { margin-top: calc(0.6rem + var(--w) * 0.225); }
-
-.env__hit {
+.sobre__hit {
   position: absolute;
-  left: 0; right: 0; top: 33.8%; bottom: 0;
+  left: 4%; right: 4%; top: 19%; bottom: 0;
   z-index: 6;
   border: 0;
   background: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.env__hit:focus-visible { outline: 2px dashed var(--crema); outline-offset: 6px; }
-.env[data-state="open"] .env__hit { pointer-events: none; }
+.sobre__hit:focus-visible { outline: 2px dashed var(--crema); outline-offset: 6px; }
+.sobre[data-state] .sobre__hit { pointer-events: none; }
 
-.env__closed {
-  position: absolute;
-  left: 0; bottom: 0;
-  width: 100%;
-  filter: drop-shadow(0 14px 22px rgba(70, 35, 40, 0.28));
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-.env:not([data-state="open"]) .env__hit:hover ~ .env__closed { transform: translateY(-4px) rotate(-0.6deg); }
+.sobre__cerrado,
+.sobre__fondo,
+.sobre__frente { position: absolute; max-width: none; filter: drop-shadow(0 14px 22px rgba(70, 35, 40, 0.25)); }
+.sobre__cerrado { left: -4.36%; top: 19.13%; width: 108.53%; height: 84.62%; transition: opacity 0.35s ease-out, transform 0.3s ease; }
+.sobre__fondo,
+.sobre__frente { left: -10.39%; top: 9.13%; width: 120.87%; height: 94.22%; opacity: 0; transition: opacity 0.35s ease-out; }
+.sobre__frente { filter: none; }
+.sobre:not([data-state]) .sobre__hit:hover ~ .sobre__cerrado { transform: translateY(-4px) rotate(-0.6deg); }
 
-.env__open {
+/* Tarjeta del calendario: posición de Variant3 (adentro) y giro de 5° */
+.sobre__cal {
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.55s ease 0.15s;
-}
-.env__back, .env__front { position: absolute; inset: 0; width: 100%; height: 100%; }
-.env__back { filter: drop-shadow(0 14px 22px rgba(70, 35, 40, 0.28)); }
-/* El frente (solapas laterales + inferior) tapa la carta mientras está adentro. */
-.env__front { clip-path: polygon(0 41%, 35.5% 66.8%, 65.8% 66.8%, 100% 41%, 100% 100%, 0 100%); }
-
-.env__letter-clip {
-  position: absolute;
-  inset: 0;
-  clip-path: inset(-100% -30% 0 -30%);   /* recorta sólo lo que asoma por debajo del sobre */
-}
-.env__letter {
-  position: absolute;
-  left: 4%;
-  width: 92%;
-  top: -20%;
+  left: 19.94%;
+  top: 58.8%;
+  width: 57.88%;
+  height: 47.4%;
   container-type: inline-size;
-  transform: translateY(93%);
-  transition: transform 1.3s var(--ease-out) 0.5s;
+  transform-origin: 0 0;
+  transform: rotate(-5deg);
+  opacity: 0;
+  transition: opacity 0.35s ease-out, transform 0.75s cubic-bezier(0.3, 0.7, 0.2, 1);
 }
-.env__letter > img { width: 100%; filter: drop-shadow(0 4px 8px rgba(70, 45, 35, 0.15)); }
-.env__letter-content {
+.sobre__puntilla { position: absolute; left: -27.7%; top: -24.05%; width: 152.9%; height: 148.6%; max-width: none; }
+.sobre__papel {
   position: absolute;
-  left: 21%; right: 21%;
-  top: 18.5%; bottom: 19%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
+  left: -0.8%; top: -0.16%;
+  width: 101.6%; height: 100.3%;
+  padding: 5.8cqw 5.1cqw 0;
+  background: rgba(240, 234, 214, 0.8);
   color: var(--tinta);
+  text-align: left;
 }
 
-.env[data-state="open"] .env__closed { opacity: 0; transform: translateY(2%); }
-.env[data-state="open"] .env__open { opacity: 1; }
-.env[data-state="open"] .env__letter { transform: translateY(0); }
+.sobre[data-state] .sobre__cerrado { opacity: 0; }
+.sobre[data-state] .sobre__fondo,
+.sobre[data-state] .sobre__frente,
+.sobre[data-state] .sobre__cal { opacity: 1; }
+/* Variant2: el calendario sale del sobre */
+.sobre[data-state="afuera"] .sobre__cal { transform: translate(-3.35%, -88.8%) rotate(-5deg); }
 
-.env__hand {
+.sobre__hand {
   position: absolute;
   z-index: 5;
-  right: 3%;
-  bottom: 4%;
-  width: 12%;
+  right: 5%;
+  bottom: 2%;
+  width: 11%;
   color: var(--tinta);
   pointer-events: none;
   animation: tap 1.8s ease-in-out infinite;
   transition: opacity 0.3s ease;
 }
-.env[data-state="open"] .env__hand { opacity: 0; animation: none; }
+.sobre[data-state] .sobre__hand { opacity: 0; animation: none; }
 @keyframes tap {
   0%, 100% { transform: translate(0, 0) scale(1); }
   45%, 55% { transform: translate(-6%, -8%) scale(0.92); }
 }
 
-/* ---------- Calendario ---------- */
+/* ---------- Calendario (tipografía y medidas del Figma) ---------- */
 
-.cal { width: 100%; }
-.cal__month { margin: 0; font-family: var(--script); font-size: 11.5cqw; line-height: 1; color: var(--rosa); }
-.cal__year {
-  margin: 0 0 1.6cqw;
-  padding-left: 0.35em;
-  font-family: var(--serif);
-  font-size: 3.8cqw;
-  letter-spacing: 0.35em;
-  color: rgba(42, 46, 26, 0.72);
-}
-.cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 0.6cqw; font-family: var(--script); }
+.cal__month { margin: 0 0 3.4cqw; font-family: var(--serif); font-size: 9.3cqw; line-height: 1.1; }
+.cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 2.2cqw; font-family: var(--serif); font-variant-numeric: lining-nums; text-align: center; }
 .cal__head {
-  font-size: 5.8cqw;
-  line-height: 1.25;
-  color: var(--rosa);
-  border-bottom: 1px solid rgba(184, 113, 119, 0.35);
-  padding-bottom: 0.6cqw;
-  margin-bottom: 0.8cqw;
+  display: grid;
+  place-items: center;
+  height: 9.1cqw;
+  margin-bottom: 1.2cqw;
+  font-weight: 500;
+  font-size: 3.5cqw;
+  border-bottom: 1px solid rgba(42, 46, 26, 0.45);
 }
-.cal__day { position: relative; display: grid; place-items: center; font-size: 5.8cqw; line-height: 1.28; }
-.cal__day--mark { color: #fff; z-index: 0; }
+.cal__day { position: relative; display: grid; place-items: center; height: 10.1cqw; font-weight: 500; font-size: 5.8cqw; }
+.cal__day--mark { color: var(--crema); z-index: 0; }
 .cal__day--mark::before {
   content: "";
   position: absolute;
-  inset: -12% -8%;
+  inset: -4% 4%;
   z-index: -1;
-  background: var(--rosa-sello);
+  background: var(--tinta);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.5S1 14.6 1 7.2A5.7 5.7 0 0 1 12 4.3 5.7 5.7 0 0 1 23 7.2c0 7.4-11 14.3-11 14.3z'/%3E%3C/svg%3E") center / contain no-repeat;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.5S1 14.6 1 7.2A5.7 5.7 0 0 1 12 4.3 5.7 5.7 0 0 1 23 7.2c0 7.4-11 14.3-11 14.3z'/%3E%3C/svg%3E") center / contain no-repeat;
   animation: beat 1.6s ease-in-out infinite;
 }
-@keyframes beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.14); } 30% { transform: scale(1); } }
+@keyframes beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.12); } 30% { transform: scale(1); } }
 
 /* ============ 05 · Programa (línea de tiempo) ============ */
 
@@ -627,17 +590,17 @@ img { max-width: 100%; height: auto; display: block; }
 
 #rsvp-form {
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
   margin-top: 0.4rem;
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.9rem;
 }
-.field { margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.field { margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 0.6rem; }
 .field > label, .field > legend {
   padding: 0;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.15rem;
   font-family: var(--serif);
   font-weight: 500;
   font-size: 1.2rem;
@@ -645,7 +608,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .field input[type="text"], .field input[type="number"] {
   width: 100%;
-  padding: 0.7rem 0.9rem;
+  padding: 0.75rem 0.9rem;
   border: 1px solid transparent;
   border-radius: 8px;
   background: var(--arena);
@@ -656,49 +619,61 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .field input:focus { outline: none; border-color: var(--rosa); background: var(--papel); box-shadow: 0 0 0 3px rgba(184, 113, 119, 0.18); }
 
+/* Opción: indicador de contorno rosa (círculo o cuadrado) + texto rosa, como el componente Formulario/Opción */
 .choice {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
   border: 1px solid transparent;
   border-radius: 11px;
   background: var(--arena);
   font-family: var(--serif);
   font-weight: 700;
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   color: var(--rosa);
   cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 .choice:active { transform: scale(0.99); }
-.choice input { width: 1.05rem; height: 1.05rem; margin: 0; flex: none; accent-color: var(--rosa); }
-.choice:has(input:checked) { background: #F3DDDC; border-color: var(--rosa); }
+.choice input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  border: 1.5px solid var(--rosa);
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.choice--check input { border-radius: 3px; }
+.choice input:checked { background: var(--rosa); box-shadow: inset 0 0 0 2.5px var(--arena); }
+.choice:has(input:checked) { border-color: var(--rosa); }
 .choice:has(input:focus-visible) { outline: 2px solid var(--rosa); outline-offset: 2px; }
-.attending-only { display: flex; flex-direction: column; gap: 1.4rem; }
-.attending-only[hidden] { display: none; }
-.attending-only:not([hidden]) { animation: unfold 0.5s var(--ease-out); }
-@keyframes unfold { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 
-#submit-btn { align-self: center; margin-top: 0.4rem; min-width: 8rem; color: var(--tinta); }
+#submit-btn { align-self: center; margin-top: 0.2rem; min-width: 8rem; color: var(--tinta); }
 #submit-btn:disabled { opacity: 0.6; cursor: wait; }
 
 .form-note { margin: 0; text-align: center; font-size: 1.05rem; }
 .form-note--error { color: #A8465A; }
 
-.notes { max-width: 36ch; color: var(--rosa); font-size: 1.02rem; }
+.notes { max-width: 30rem; color: var(--rosa); font-size: 1.02rem; }
 .notes p { margin: 0 0 0.9rem; }
 .notes p:last-child { margin: 0; }
 
-/* ============ 08 · Cierre ============ */
+/* ============ 08 · Cierre (franja sutil) ============ */
 
-.closing { color: var(--crema); gap: 0.4rem; padding: 5rem 1.5rem 5.5rem; }
-.closing__names {
-  margin: 0;
-  font-family: var(--script);
-  font-size: clamp(3.6rem, 15vw, 6rem);
-  line-height: 1.15;
+.closing {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 2.6rem 1.5rem 2.8rem;
+  text-align: center;
+  color: var(--crema);
 }
+.closing__text { margin: 0; font-size: clamp(1.05rem, 4.4vw, 1.25rem); letter-spacing: 0.02em; }
 
 /* ============ Pétalos ============ */
 

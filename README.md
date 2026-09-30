@@ -8,8 +8,8 @@ Sitio de una sola página para la invitación de boda, con formulario de confirm
 index.html          → contenido: sobre con sello, portada, ubicación, invitación + calendario,
                       programa, vestimenta, confirmación y cierre (mismo orden que el Figma)
 style.css           → estilos (paleta, tipografías, layout)
-envelope.js         → sobre de entrada (sello) y sobre del calendario, armado del calendario
-effects.js          → aparición al hacer scroll, línea del programa, pétalos y "agendar la fecha"
+envelope.js         → sobre de entrada (sello) y SOBRE1 con el calendario (misma secuencia que el Figma)
+effects.js          → aparición al hacer scroll, línea del programa y pétalos
 script.js           → lógica del formulario (envío a Google Sheets)
 music.js            → música de fondo
 apps-script/Code.gs → backend (Google Apps Script) que recibe el formulario y escribe en la planilla

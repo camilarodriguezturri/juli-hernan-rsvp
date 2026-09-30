@@ -1,5 +1,5 @@
 // Efectos de la página: aparición al hacer scroll, línea del programa que
-// avanza con el scroll, lluvia de pétalos y botones para agendar la fecha.
+// avanza con el scroll y lluvia de pétalos.
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -73,43 +73,4 @@
     setTimeout(() => layer.remove(), 7500);
   }
   window.petals = { burst };
-
-  // ---------- Agendar la fecha ----------
-  const EVENT = {
-    title: 'Casamiento de Juli y Hernán',
-    location: 'Avenida Triunvirato 6386, CABA, Argentina',
-    details: '¡Nos casamos! Te esperamos para celebrar juntos. https://camilarodriguezturri.github.io/juli-hernan-rsvp/',
-    // 18:30 a 03:30 hora de Buenos Aires (UTC-3)
-    start: '20261226T213000Z',
-    end: '20261227T063000Z',
-  };
-  const gcal = document.getElementById('gcal-link');
-  if (gcal) {
-    const q = new URLSearchParams({ action: 'TEMPLATE', text: EVENT.title, dates: `${EVENT.start}/${EVENT.end}`, details: EVENT.details, location: EVENT.location });
-    gcal.href = `https://calendar.google.com/calendar/render?${q.toString()}`;
-  }
-  const ics = document.getElementById('ics-link');
-  if (ics) {
-    ics.addEventListener('click', () => {
-      const esc = (s) => s.replace(/[,;\\]/g, (m) => '\\' + m);
-      const body = [
-        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Juli y Hernan//Invitacion//ES', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
-        'BEGIN:VEVENT',
-        'UID:boda-juli-hernan-20261226@invitacion',
-        `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')}`,
-        `DTSTART:${EVENT.start}`, `DTEND:${EVENT.end}`,
-        `SUMMARY:${esc(EVENT.title)}`, `LOCATION:${esc(EVENT.location)}`, `DESCRIPTION:${esc(EVENT.details)}`,
-        'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Mañana es el casamiento de Juli y Hernán', 'END:VALARM',
-        'END:VEVENT', 'END:VCALENDAR',
-      ].join('\r\n');
-      const url = URL.createObjectURL(new Blob([body], { type: 'text/calendar;charset=utf-8' }));
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'casamiento-juli-y-hernan.ics';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    });
-  }
 })();
