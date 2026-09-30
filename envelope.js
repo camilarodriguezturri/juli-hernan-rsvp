@@ -1,15 +1,14 @@
-// Sobres: el de bienvenida (pantalla completa al entrar) y el del calendario.
-// Al tocarlos pasan a data-state="open": se va el sello, se abre la solapa
-// y la carta (papel con puntilla) sube desde adentro del sobre.
+// Sobres: el de bienvenida (primer plano con el sello, pantalla completa)
+// y el de la invitación, que al tocarlo se abre y deja ver el calendario.
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
 
   // ---------- Calendario de diciembre 2026 (empieza en lunes) ----------
   const grid = document.getElementById('cal-grid');
   if (grid) {
     const YEAR = 2026, MONTH = 11, MARKED = 26; // MONTH 0-indexado: 11 = diciembre
-    const heads = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
-    heads.forEach((h) => {
+    ['L', 'M', 'X', 'J', 'V', 'S', 'D'].forEach((h) => {
       const el = document.createElement('span');
       el.className = 'cal__head';
       el.setAttribute('role', 'columnheader');
@@ -28,45 +27,40 @@
     }
   }
 
-  // ---------- Apertura de sobres ----------
-  function openEnvelope(env) {
-    if (env.dataset.state === 'open') return;
-    env.dataset.state = 'open';
-    const open = env.querySelector('.env__open');
-    if (open) open.removeAttribute('aria-hidden');
-  }
-
+  // ---------- Sobre del calendario ----------
   document.querySelectorAll('[data-env]').forEach((env) => {
     const hit = env.querySelector('.env__hit');
-    if (hit) hit.addEventListener('click', () => openEnvelope(env));
+    if (!hit) return;
+    hit.addEventListener('click', () => {
+      if (env.dataset.state === 'open') return;
+      env.dataset.state = 'open';
+      if (window.petals) setTimeout(() => window.petals.burst(18), 900);
+    });
   });
 
-  // ---------- Intro ----------
+  // ---------- Intro: sobre cerrado con el sello ----------
   const intro = document.getElementById('intro');
-  if (!intro) return;
-  const root = document.documentElement;
+  if (!intro) { root.classList.add('is-open'); return; }
   root.classList.add('is-locked');
   window.scrollTo(0, 0);
 
-  const introEnv = intro.querySelector('[data-env]');
-  let closing = false;
-
-  function dismissIntro() {
-    if (closing) return;
-    closing = true;
+  let opened = false;
+  function openIntro() {
+    if (opened) return;
+    opened = true;
     intro.classList.add('is-opening');
-    openEnvelope(introEnv);
-    // Dejamos ver cómo sube la carta y después se desvanece la pantalla.
+    if (window.petals) window.petals.burst(34);
+    // El sello se quiebra y enseguida el sobre se levanta dejando ver la portada.
     setTimeout(() => {
       intro.classList.add('is-gone');
       root.classList.remove('is-locked');
-    }, reduceMotion ? 900 : 2300);
-    setTimeout(() => intro.remove(), reduceMotion ? 1500 : 3400);
+      root.classList.add('is-open');
+    }, reduceMotion ? 250 : 650);
+    setTimeout(() => intro.remove(), reduceMotion ? 900 : 2000);
   }
 
-  // Todo el intro es tocable (no sólo el sobre), para que nadie se quede trabado.
-  intro.addEventListener('click', dismissIntro);
+  intro.addEventListener('click', openIntro);
   intro.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dismissIntro(); }
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openIntro(); }
   });
 })();

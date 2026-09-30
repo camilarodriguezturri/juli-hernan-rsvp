@@ -55,6 +55,7 @@ form.addEventListener('submit', async (event) => {
     });
 
     successMsg.hidden = false;
+    if (window.petals && data.asistencia.startsWith('Sí')) window.petals.burst(40);
     form.reset();
     updateAttendingFields();
   } catch (err) {

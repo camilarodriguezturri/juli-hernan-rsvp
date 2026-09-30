@@ -5,20 +5,25 @@ Sitio de una sola página para la invitación de boda, con formulario de confirm
 ## Estructura
 
 ```
-index.html          → contenido: sobre de bienvenida, portada, invitación + calendario,
-                      programa, ubicación, vestimenta, confirmación y cierre
+index.html          → contenido: sobre con sello, portada, ubicación, invitación + calendario,
+                      programa, vestimenta, confirmación y cierre (mismo orden que el Figma)
 style.css           → estilos (paleta, tipografías, layout)
-envelope.js         → sobres que se abren (intro y calendario) y armado del calendario
-frame.js            → marco decorativo con esquinas en muesca (portada)
+envelope.js         → sobre de entrada (sello) y sobre del calendario, armado del calendario
+effects.js          → aparición al hacer scroll, línea del programa, pétalos y "agendar la fecha"
 script.js           → lógica del formulario (envío a Google Sheets)
 music.js            → música de fondo
 apps-script/Code.gs → backend (Google Apps Script) que recibe el formulario y escribe en la planilla
 assets/icons/       → íconos del programa (exportados del Figma, "Posibles Piezas" / Page 5)
+
 assets/ornaments/   → ornamentos vectoriales del Figma
 ```
 
-Tipografías: Monsieur La Doulaise (títulos en cursiva y nombres), Cormorant Garamond
-(fechas y subtítulos) y Pochaevsk (texto de cuerpo). Colores: rosa `#E5989B`, crema `#F0EAD6`.
+Diseño: frame "CORREGIDO · Invitación Juli & Hernán" en la página "Page 5" del Figma "Posibles Piezas"
+(auto layout por sección, componentes en "Componentes · Invitación", variables y estilos de texto "Invitación/…").
+
+Tipografías: Pochaevsk (títulos y cuerpo), Monsieur La Doulaise + Miss Fajardose (nombres),
+Cormorant Garamond (fechas, subtítulos y formulario). Colores: rosa `#B87177`, sello `#E5989B`,
+crema `#F0EAD6`, tinta `#2A2E1A`, arena `#E8D8C8`.
 
 ## Cómo conectar el formulario a Google Sheets
 
