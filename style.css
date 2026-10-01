@@ -720,6 +720,54 @@ img { max-width: 100%; height: auto; display: block; }
 #music-toggle.is-playing #music-icon { display: inline-block; animation: music-pulse 1.6s ease-in-out infinite; }
 @keyframes music-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
 
+/* ============ Tablet y PC ============ */
+
+@media (min-width: 768px) {
+  .section { gap: 2.4rem; padding: 7rem 2.5rem 7.5rem; }
+  .title { font-size: clamp(2.8rem, 4.6vw, 3.8rem); max-width: 26ch; }
+  .title--wide { max-width: 30ch; }
+  .body { font-size: clamp(1.2rem, 1.6vw, 1.4rem); line-height: 1.65; max-width: 40rem; }
+  .body--wide { max-width: 46rem; }
+  .detail { font-size: clamp(1.6rem, 2.4vw, 2rem); }
+  .btn { font-size: 1.12rem; padding-inline: 2.2rem; }
+
+  .hero__inner { max-width: 820px; gap: 1.8rem; }
+  .eyebrow { font-size: clamp(1.6rem, 2.4vw, 2rem); }
+  .names__n { font-size: clamp(6rem, 9vw, 9rem); }
+  .names__y { font-size: clamp(5.6rem, 8.5vw, 8.5rem); }
+  .orn--fleurons { width: 230px; }
+
+  .sobre { --w: min(48vw, 540px); }
+  .gyps { width: min(20vw, 260px); }
+  .gyps--l { left: 4%; }
+  .gyps--r { right: 4%; }
+  .invite__hint, .intro__hint { font-size: 1rem; }
+
+  .timeline { max-width: 820px; gap: 1.8rem; --dot: 34px; }
+  .t-item { min-height: 10rem; column-gap: 2rem; }
+  .t-item__icon img { width: 170px; }
+  .t-item--wide .t-item__icon img { width: 240px; }
+  .t-item__time, .t-item__label { font-size: clamp(1.6rem, 2.2vw, 1.9rem); }
+
+  #rsvp-form { max-width: 620px; gap: 2.2rem; }
+  .field > label, .field > legend { font-size: 1.4rem; }
+  .field input[type="text"], .field input[type="number"] { font-size: 1.1rem; padding: 0.95rem 1.1rem; }
+  .choice { font-size: 1.18rem; padding: 0.95rem 1.2rem; }
+  .choice:hover { border-color: rgba(184, 113, 119, 0.5); }
+  .notes { max-width: 40rem; font-size: 1.15rem; }
+  .form-note { font-size: 1.15rem; }
+
+  .closing { padding: 3.4rem 2rem 3.6rem; }
+  .closing__text { font-size: 1.45rem; }
+}
+
+@media (min-width: 1200px) {
+  .section { padding: 8.5rem 3rem 9rem; }
+  .title { font-size: 4.1rem; }
+  .body { font-size: 1.45rem; }
+  .sobre { --w: 580px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
