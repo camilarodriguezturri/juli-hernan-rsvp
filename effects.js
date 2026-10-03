@@ -1,5 +1,5 @@
-// Efectos de la página: aparición al hacer scroll, línea del programa que
-// avanza con el scroll y lluvia de pétalos.
+// Efectos de la página: aparición al hacer scroll, enredadera del programa que
+// crece con el scroll y lluvia de pétalos.
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -16,6 +16,13 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     revealables.forEach((el) => io.observe(el));
+    // Lo último de la página (el "Con amor…" del cierre) nunca llega a cruzar ese margen:
+    // al tocar el final del scroll se muestra lo que falte.
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        revealables.forEach((el) => el.classList.add('is-in'));
+      }
+    }, { passive: true });
   } else {
     revealables.forEach((el) => el.classList.add('is-in'));
   }
@@ -25,6 +32,20 @@
   if (timeline) {
     const items = Array.from(timeline.querySelectorAll('.t-item'));
     let ticking = false;
+    // La enredadera se acomoda a las filas reales: mide la distancia entre la primera y la última flor
+    // (por si el texto o los íconos agrandan alguna fila) y se la pasa al CSS.
+    function fitVine() {
+      if (items.length < 2) return;
+      const first = items[0], last = items[items.length - 1];
+      const c0 = first.offsetTop + first.offsetHeight / 2;
+      const c1 = last.offsetTop + last.offsetHeight / 2;
+      timeline.style.setProperty('--s', ((c1 - c0) / (items.length - 1)).toFixed(2) + 'px');
+      timeline.style.setProperty('--row0', c0.toFixed(2) + 'px');
+    }
+    fitVine();
+    window.addEventListener('resize', fitVine);
+    window.addEventListener('load', fitVine);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitVine);
     function update() {
       ticking = false;
       const r = timeline.getBoundingClientRect();
