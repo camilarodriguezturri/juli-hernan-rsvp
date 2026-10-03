@@ -503,6 +503,17 @@ img { max-width: 100%; height: auto; display: block; }
 .sobre__frente { filter: none; }
 .sobre:not([data-state]) .sobre__hit:hover ~ .sobre__cerrado { transform: translateY(-4px) rotate(-0.6deg); }
 
+/* Ranura del sobre: el calendario solo se dibuja por encima de la boca y dentro de la muesca del frente,
+   así nunca asoma por debajo del sobre ni se transparenta mientras se abre.
+   Los puntos siguen el borde superior de sobre1-frente.webp, en % de la caja. */
+.sobre__ranura {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-clip-path: polygon(-30% -60%, 130% -60%, 130% 50%, 97.2% 50.1%, 93.8% 50.4%, 90.2% 51.4%, 65.3% 72%, 35.5% 72%, 10% 51.6%, 7.6% 50.7%, 2.8% 50%, -30% 50%);
+          clip-path: polygon(-30% -60%, 130% -60%, 130% 50%, 97.2% 50.1%, 93.8% 50.4%, 90.2% 51.4%, 65.3% 72%, 35.5% 72%, 10% 51.6%, 7.6% 50.7%, 2.8% 50%, -30% 50%);
+}
+
 /* Tarjeta del calendario: posición de Variant3 (adentro) y giro de 5° */
 .sobre__cal {
   position: absolute;
@@ -531,8 +542,8 @@ img { max-width: 100%; height: auto; display: block; }
 .sobre[data-state] .sobre__fondo,
 .sobre[data-state] .sobre__frente,
 .sobre[data-state] .sobre__cal { opacity: 1; }
-/* Variant2: el calendario sale del sobre */
-.sobre[data-state="afuera"] .sobre__cal { transform: translate(-3.35%, -88.8%) rotate(-5deg); }
+/* Variant2: el calendario sale del sobre (queda con el borde de abajo metido en la muesca, no suelto) */
+.sobre[data-state="afuera"] .sobre__cal { transform: translate(-3.35%, -84.5%) rotate(-5deg); }
 
 .sobre__hand {
   position: absolute;
