@@ -22,8 +22,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Monsieur+La+Doulaise&family=Miss+Fajardose&family=Pochaevsk&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/sobre-cerrado.webp">
-<link rel="preload" as="image" href="assets/sello.webp">
+<link rel="preload" as="image" href="assets/inicio-sobre.webp">
+<link rel="preload" as="image" href="assets/inicio-sello.webp">
+<link rel="preload" as="image" href="assets/inicio-fondo.webp" media="(max-aspect-ratio: 1/1)">
+<link rel="preload" as="image" href="assets/inicio-fondo-ancho.webp" media="(min-aspect-ratio: 1001/1000)">
 <link rel="preload" as="image" href="assets/encaje.webp">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:,">
@@ -38,13 +40,27 @@
   <span id="music-icon">🎵</span>
 </button>
 
-<!-- ============ 01 · Sobre ============ -->
+<!-- ============ 01 · Sobre ============
+     Mismas capas y mismo orden que el frame "pantalla inicio" del Figma (de abajo hacia arriba). -->
 <div class="intro" id="intro" role="button" tabindex="0" aria-label="Abrir la invitación">
-  <div class="intro__env">
-    <img class="intro__paper" src="assets/sobre-cerrado.webp" alt="" width="900" height="645">
-    <img class="intro__seal" src="assets/sello.webp" alt="Sello de lacre con las iniciales J y H" width="520" height="540">
-  </div>
+  <!-- 1 · Foto de lirios vista a través del vidrio acanalado (tiras de 60 px con efecto Glass) -->
+  <picture class="intro__fondo">
+    <source media="(min-aspect-ratio: 1001/1000)" srcset="assets/inicio-fondo-ancho.webp" width="1920" height="1200">
+    <img src="assets/inicio-fondo.webp" alt="" width="1618" height="2877">
+  </picture>
+  <!-- 2 · Velo #685454 al 40 % -->
+  <span class="intro__velo" aria-hidden="true"></span>
+  <!-- 3 · Puntillas: abajo (espejada) y arriba -->
   <span class="puntilla puntilla--intro" aria-hidden="true"></span>
+  <span class="puntilla puntilla--intro-top" aria-hidden="true"></span>
+  <!-- 4 · Sobre, sello y velo #D9D9D9 al 20 % encima de los dos -->
+  <div class="intro__env">
+    <img class="intro__paper" src="assets/inicio-sobre.webp" alt="" width="1128" height="1045">
+    <img class="intro__seal" src="assets/inicio-sello.webp" alt="Sello de lacre con las iniciales J y H" width="604" height="730">
+    <span class="intro__env-velo" aria-hidden="true"></span>
+  </div>
+  <!-- 5 · Capa de arriba: #ABABAB al 18 % con ruido -->
+  <span class="intro__grano" aria-hidden="true"></span>
   <p class="intro__hint">Presioná el sobre para abrirlo</p>
 </div>
 

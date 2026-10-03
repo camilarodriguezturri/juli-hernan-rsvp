@@ -18,18 +18,35 @@ assets/icons/       → íconos del programa (exportados del Figma, "Posibles Pi
                       bienvenida, ceremonia, recepcion, cena, manos (fin de fiesta) y las flores de la enredadera (flor-1/2/3)
 assets/enredadera.svg      → tallo y hojas de la línea del programa
 assets/encaje.webp         → puntilla que separa las secciones (se repite a lo ancho)
+assets/inicio-*.webp       → pantalla inicial: fondo de lirios visto por el vidrio acanalado (vertical y versión
+                             ancha para pantallas apaisadas), sobre cerrado y sello
+assets/ruido.png           → grano de la capa de arriba de la pantalla inicial
 assets/fondo-durazno.webp  → fondo de Ubicación y Vestimenta
 assets/ubicacion-marco.svg → marco dibujado de Ubicación; adentro va assets/ubicacion-foto.webp
 
 assets/ornaments/   → ornamentos vectoriales del Figma (fleurons, heart-flourish, flourish, divisor)
 ```
 
-Diseño: frame "Correccion final" en la página "Page 5" del Figma "Posibles Piezas"
+Diseño: frames "pantalla inicio" (sobre de entrada) y "Correccion final" en la página "Page 5" del Figma "Posibles Piezas"
 (la versión anterior salió de "CORREGIDO · Invitación Juli & Hernán"; componentes en "Componentes · Invitación").
 
 Tipografías: Cormorant Garamond (títulos de sección, fechas, subtítulos y formulario), Pochaevsk (cuerpo y
 título de la invitación), Monsieur La Doulaise + Miss Fajardose (nombres). Colores: rosa `#B87177`,
 sello `#E5989B`, crema `#F0EAD6`, tinta `#2A2E1A`, arena `#E8D8C8`, durazno `#EBD9C7` (bajo la textura).
+
+## Pantalla inicial (capas)
+
+La pantalla del sobre repite las capas del frame "pantalla inicio", de abajo hacia arriba:
+
+1. Foto de lirios detrás del vidrio acanalado (tiras de 60 px con efecto Glass). El vidrio va horneado en
+   `inicio-fondo.webp`; si cambia la foto o el vidrio en el Figma hay que volver a generar esa imagen.
+2. Velo `#685454` al 40 %.
+3. Puntilla arriba y puntilla espejada abajo.
+4. Sobre, sello y, encima de los dos, velo `#D9D9D9` al 20 %.
+5. Capa `#ABABAB` al 18 % con ruido (negro al 25 % sobre esa capa: 4,5 % efectivo).
+
+Las capas 2, 4 (velo) y 5 son CSS (`.intro__velo`, `.intro__env-velo`, `.intro__grano`): se ajustan desde `style.css`.
+Al tocar, el sello late, se quiebra y toda la pantalla sube para dejar ver la portada (`envelope.js`).
 
 ## Cómo conectar el formulario a Google Sheets
 
