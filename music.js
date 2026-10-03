@@ -10,8 +10,9 @@
   const icon = document.getElementById('music-icon');
   if (!audio || !toggleBtn) return;
 
-  const VOL = 0.18;          // volumen inicial (0 a 1)
-  const VOL_BAJO = VOL / 2;  // a los 15 s, la mitad
+  const VOL_REF = 0.18;        // volumen de referencia: el 100 % anterior (0 a 1)
+  const VOL = VOL_REF * 0.30;  // volumen inicial: 30 % de la referencia = 0,054
+  const VOL_BAJO = VOL / 2;    // a los 15 s, la mitad = 0,027
   const FADE_IN = 2.5;       // segundos
   const FADE_DOWN = 4;       // segundos
   const BAJAR_A_LOS = 15000; // ms de escucha con la página visible
