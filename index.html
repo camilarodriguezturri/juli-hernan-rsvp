@@ -27,7 +27,7 @@
 <link rel="preload" as="image" href="assets/inicio-fondo.webp" media="(max-aspect-ratio: 1/1)">
 <link rel="preload" as="image" href="assets/inicio-fondo-ancho.webp" media="(min-aspect-ratio: 1001/1000)">
 <link rel="preload" as="image" href="assets/encaje.webp">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <link rel="icon" href="data:,">
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
@@ -68,7 +68,7 @@
 
 <!-- ============ 02 · Portada ============ -->
 <header class="hero" id="inicio">
-  <span class="puntilla puntilla--hero" aria-hidden="true"></span>
+  <span class="marco marco--hero" aria-hidden="true"></span>
   <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
     <source src="assets/hero-video.mp4" type="video/mp4">
   </video>
@@ -82,13 +82,9 @@
     <h1 class="names hero-in hero-in--blur" style="--d:3">
       <span class="names__n">Juli</span><span class="names__y">y</span><span class="names__n">Hernán</span>
     </h1>
-    <figure class="lace hero-in hero-in--scale" style="--d:5">
-      <img class="lace__frame" src="assets/marco-encaje.webp" alt="" width="900" height="1086">
-      <span class="lace__window"><img class="lace__photo" src="assets/ramo-velo.jpg" alt="Ramo de novia con velo" width="735" height="1080"></span>
-    </figure>
-    <p class="hero__date hero-in" style="--d:7">26 . 12 . 2026</p>
-    <span class="rule rule--light hero-in" style="--d:8" aria-hidden="true"></span>
-    <span class="orn orn--fleurons orn--flip hero__orn hero-in" style="--d:9" aria-hidden="true"></span>
+    <p class="hero__date hero-in" style="--d:5">26 . 12 . 2026</p>
+    <span class="rule rule--light hero-in" style="--d:6" aria-hidden="true"></span>
+    <span class="orn orn--fleurons orn--flip hero__orn hero-in" style="--d:7" aria-hidden="true"></span>
   </div>
 
   <a class="scroll-cue" href="#ubicacion" aria-label="Seguir bajando">
@@ -97,23 +93,20 @@
 </header>
 
 <!-- ============ 03 · Ubicación ============ -->
-<div class="puntilla" aria-hidden="true"></div>
-<section class="section peach section--under-lace" id="ubicacion">
+<div class="marco" aria-hidden="true"></div>
+<section class="section peach" id="ubicacion">
   <span class="orn orn--corazon sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
-  <figure class="venue" data-reveal>
-    <img class="venue__photo" src="assets/ubicacion-foto.webp" alt="Jardín del salón, con el altar y el arco de flores" width="689" height="401" loading="lazy">
-    <img class="venue__frame" src="assets/ubicacion-marco.svg" alt="" width="1080" height="852" loading="lazy">
-  </figure>
   <h2 class="title" data-reveal>Ubicación</h2>
   <span class="orn orn--divisor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
-  <p class="body" data-reveal>Sábado 26 de Diciembre - 18:30 hs<br>Avenida Triunvirato 6386, CABA</p>
-  <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Triunvirato+6386%2C+CABA%2C+Argentina" target="_blank" rel="noopener" data-reveal>Ver en Google Maps</a>
+  <img class="venue-logo" src="assets/el-abierto.svg" alt="El Abierto Eventos" width="216" height="96" data-reveal>
+  <p class="body" data-reveal>Sábado 26 de Diciembre - 18:30 hs<br>Av. Triunvirato 6385, Caba</p>
+  <a class="btn" href="https://maps.app.goo.gl/xGEKhm6i17hTRmzb6" target="_blank" rel="noopener" data-reveal>Ver en Google Maps</a>
   <span class="orn orn--voluta sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
 </section>
 
 <!-- ============ 04 · Invitación ============ -->
-<div class="puntilla" aria-hidden="true"></div>
-<section class="section invite section--under-lace" id="invitacion">
+<div class="marco" aria-hidden="true"></div>
+<section class="section invite" id="invitacion">
   <img class="invite__bg" src="assets/flores-fondo.jpg" alt="" width="1000" height="1250" loading="lazy">
   <div class="invite__veil" aria-hidden="true"></div>
   <img class="gyps gyps--l" src="assets/gypsophila.webp" alt="" width="304" height="971" loading="lazy">
@@ -131,7 +124,7 @@
     <!-- Ranura: recorta el calendario con la forma de la boca del sobre, así solo se ve lo que asoma -->
     <div class="sobre__ranura">
       <div class="sobre__cal" role="table" aria-label="Calendario de diciembre de 2026, el sábado 26 marcado con un corazón">
-        <img class="sobre__puntilla" src="assets/sobre1-puntilla.webp" alt="" width="900" height="851" loading="lazy">
+        <img class="sobre__tarjeta" src="assets/calendario-tarjeta.svg" alt="" width="738" height="790" loading="lazy">
         <div class="sobre__papel">
           <p class="cal__month">Diciembre</p>
           <div class="cal__grid" id="cal-grid"></div>
@@ -152,8 +145,8 @@
 </section>
 
 <!-- ============ 05 · Programa ============ -->
-<div class="puntilla" aria-hidden="true"></div>
-<section class="section cream section--under-lace section--over-lace" id="programa">
+<div class="marco" aria-hidden="true"></div>
+<section class="section cream section--prog" id="programa">
   <span class="orn orn--fleurons sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
   <h2 class="title" data-reveal>Programa</h2>
   <span class="orn orn--divisor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
@@ -215,19 +208,18 @@
 </section>
 
 <!-- ============ 06 · Vestimenta ============ -->
-<div class="puntilla puntilla--up" aria-hidden="true"></div>
+<div class="marco" aria-hidden="true"></div>
 <section class="section peach section--airy" id="vestimenta">
   <span class="orn orn--corazon sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
   <h2 class="title" data-reveal>Vestimenta</h2>
   <span class="orn orn--divisor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
-  <p class="body" data-reveal>Nos encantaría verte con ropa elegante de noche para celebrar juntos este día tan especial</p>
   <p class="detail" data-reveal>Elegante Noche</p>
   <span class="orn orn--voluta sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
 </section>
 
 <!-- ============ 07 · Confirmación ============ -->
-<div class="puntilla" aria-hidden="true"></div>
-<section class="section cream section--under-lace" id="rsvp">
+<div class="marco" aria-hidden="true"></div>
+<section class="section cream section--form" id="rsvp">
   <span class="orn orn--fleurons sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
   <h2 class="title" data-reveal>Confirmá tu asistencia</h2>
   <span class="rule rule--ink rule--under" data-reveal aria-hidden="true"></span>
@@ -277,7 +269,7 @@
 <!-- ============ 08 · Cierre ============ -->
 <footer class="closing" id="cierre">
   <img class="closing__bg" src="assets/flores-fondo.jpg" alt="" width="1000" height="1250" loading="lazy">
-  <div class="invite__veil" aria-hidden="true"></div>
+  <div class="closing__veil" aria-hidden="true"></div>
   <p class="closing__text" data-reveal>Con amor, Juli &amp; Hernán</p>
 </footer>
 

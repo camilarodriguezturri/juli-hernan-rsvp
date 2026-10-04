@@ -9,7 +9,8 @@
   --papel: #FAF6EC;
   --durazno: #EBD9C7;
 
-  --lace-h: min(21.76vw, 118px);     /* alto de la puntilla: 235/1080 del ancho, como en el Figma */
+  --lace-h: min(21.76vw, 118px);     /* alto de la puntilla de la pantalla inicial: 235/1080 del ancho */
+  --marco-h: min(11.3vw, 76px);      /* alto de la franja entre secciones: 122/1080 del ancho, como en el Figma */
   --title-size: clamp(2.25rem, 8.8vw, 3.3rem);
 
   --script: 'Monsieur La Doulaise', cursive;
@@ -130,19 +131,35 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: center;
   --gap: 2rem;
   gap: var(--gap);
-  padding: 5rem 1.25rem 5.25rem;
+  padding: 2.9rem 1.25rem;            /* 120 px del Figma arriba y abajo (Ubicación) */
   text-align: center;
 }
 .cream { background: var(--crema); color: var(--tinta); }
 .rose  { background: var(--rosa);  color: var(--crema); }
 .peach { background: var(--durazno) url(assets/fondo-durazno.webp) center / cover no-repeat; color: var(--tinta); }
 
-/* Aire para la puntilla que cuelga sobre el borde de la sección */
-.section--under-lace { padding-top: calc(var(--lace-h) * 0.86 + 2.6rem); }
-.section--over-lace  { padding-bottom: calc(var(--lace-h) * 0.86 + 3rem); }
-.section--airy { padding-top: 7.5rem; padding-bottom: calc(var(--lace-h) * 0.14 + 7rem); }
+/* Aire propio de cada sección, medido en el frame "Correccion final" */
+.section--prog { padding-top: 4.3rem; padding-bottom: 3.4rem; }     /* Programa: 180 / 141 px */
+.section--airy { padding-top: 5.6rem; padding-bottom: 5.6rem; }     /* Vestimenta: 234 px */
+.section--form { padding-top: 4.3rem; padding-bottom: 6rem; }       /* Confirmación: 180 / 251 px */
 
-/* ============ Puntilla entre secciones (encaje del Figma) ============ */
+/* ============ Franja entre secciones (componente "marco" del Figma) ============
+   Relleno #BE7F84 con la textura en multiplicar (horneados en marco-fondo.webp, que se repite
+   espejado y no deja costura) y, encima, el ornamento #E5989B centrado: 62 de los 122 px de alto. */
+
+.marco {
+  display: block;
+  position: relative;
+  z-index: 3;
+  height: var(--marco-h);
+  background:
+    url(assets/ornaments/marco.svg) center / auto 50.82% no-repeat,
+    #B76B6E url(assets/marco-fondo.webp) center / auto 100% repeat-x;
+  pointer-events: none;
+}
+.marco--hero { position: absolute; left: 0; right: 0; top: 0; }
+
+/* ============ Puntilla de la pantalla inicial (encaje del Figma) ============ */
 
 .puntilla {
   display: block;
@@ -156,12 +173,10 @@ img { max-width: 100%; height: auto; display: block; }
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(var(--lace-h) * -0.14);   /* muerde apenas la sección de arriba y cuelga sobre la de abajo */
+  top: 0;
   height: var(--lace-h);
   background: url(assets/encaje.webp) left top / auto 100% repeat-x;
 }
-.puntilla--up::before { top: auto; bottom: calc(var(--lace-h) * -0.14); transform: scaleY(-1); }
-.puntilla--hero  { position: absolute; left: 0; right: 0; top: 0; }
 /* Pantalla inicial: una puntilla arriba y otra espejada abajo, las dos enteras (como en el Figma) */
 .puntilla--intro { position: absolute; left: 0; right: 0; bottom: 0; }
 .puntilla--intro::before { top: auto; bottom: 0; transform: scaleY(-1); }
@@ -317,7 +332,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--lace-h) * 0.86 + 2.4rem) 1.25rem 5rem;
+  padding: calc(var(--marco-h) + 2.4rem) 1.25rem 4.2rem;
   text-align: center;
   color: var(--crema);
   background: #9d7b80;
@@ -355,69 +370,48 @@ img { max-width: 100%; height: auto; display: block; }
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
 }
 
+/* Separaciones del frame "inicio" del Figma: 101 px entre bloques (--g), 45 px entre
+   "Nos casamos" y el ornamento, 80 px entre cada ornamento y su filete. */
 .hero__inner {
+  --g: clamp(1.9rem, 9.35vw, 3.3rem);
   width: 100%;
   max-width: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--g);
 }
 
 .eyebrow {
-  margin: 0;
+  margin: 0 0 calc(var(--g) * -0.554);
   font-family: var(--serif);
   font-weight: 500;
   font-size: clamp(1.25rem, 5.4vw, 1.7rem);
+  line-height: 1.2;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.hero__orn { color: var(--crema); width: min(34vw, 170px); }
+.hero__orn { color: var(--crema); width: min(34vw, 170px); margin-bottom: calc(var(--g) * -0.208); }
+.hero__orn.orn--flip { margin-top: calc(var(--g) * -0.208); margin-bottom: 0; }
 
 .names {
-  margin: 0.2rem 0 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.2;
   white-space: nowrap;
   text-shadow: 0 2px 16px rgba(60, 30, 35, 0.25);
 }
 .names__n { font-family: var(--script); font-size: clamp(3.6rem, 16.5vw, 6.8rem); }
 .names__y { font-family: var(--script-y); font-size: clamp(3.4rem, 16vw, 6.4rem); margin: 0 0.12em; transform: translateY(0.12em); }
 
-/* Marco de encaje con la foto en la ventana ovalada (proporciones del Figma) */
-.lace {
-  position: relative;
-  width: min(80vw, 420px);
-  margin: 0.4rem 0 0;
-  animation: float 7s ease-in-out infinite;
-}
-.lace__frame { width: 100%; filter: drop-shadow(0 10px 22px rgba(50, 25, 30, 0.3)); }
-.lace__window {
-  position: absolute;
-  left: 21.7%;
-  top: 16.8%;
-  width: 56.8%;
-  height: 64.3%;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.lace__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 40%;
-  animation: kenburns 14s ease-in-out infinite alternate;
-}
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.09) translateY(-2%); } }
-
 .hero__date {
-  margin: 0.3rem 0 0;
+  margin: 0;
   font-family: var(--serif);
   font-size: clamp(2.2rem, 9.6vw, 3.4rem);
+  line-height: 1.4;
   letter-spacing: 0.06em;
 }
 
@@ -442,7 +436,6 @@ img { max-width: 100%; height: auto; display: block; }
   transition-delay: calc(var(--d, 0) * 0.14s + 0.3s);
 }
 .js .hero-in--blur { filter: blur(8px); }
-.js .hero-in--scale { transform: translateY(18px) scale(0.94); }
 .js .hero-in.orn--flip { transform: translateY(18px) scaleY(-1); }
 .is-open .hero-in { opacity: 1; transform: none; filter: none; }
 .is-open .hero-in.orn--flip { transform: scaleY(-1); }
@@ -462,29 +455,13 @@ img { max-width: 100%; height: auto; display: block; }
 .js .orn--flip[data-reveal].is-in { transform: scaleY(-1); }
 .js .rule[data-reveal].is-in { opacity: 0.6; }
 
-/* ============ 03 · Ubicación (marco dibujado con la foto del lugar) ============ */
+/* ============ 03 · Ubicación (logo del salón entre el divisor y la dirección) ============ */
 
-.venue {
-  position: relative;
-  flex: none;
-  width: calc(100% + 2.5rem);          /* a sangre: en el Figma el marco toca los bordes de la pantalla */
-  max-width: 620px;
-  margin: 0 -1.25rem;
-  aspect-ratio: 1080 / 851.5;
-}
-.venue__photo { position: absolute; left: 18.36%; top: 27.98%; width: 63.8%; height: auto; }
-.venue__frame { position: absolute; inset: 0; width: 100%; height: 100%; }
-@media (min-width: 621px) {
-  /* En pantallas anchas el marco ya no llega al borde: se funde en los costados */
-  .venue {
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  }
-}
+.venue-logo { flex: none; width: min(20vw, 104px); height: auto; }   /* 216/1080 del ancho */
 
 /* ============ 04 · Invitación ============ */
 
-.invite { color: var(--crema); padding-bottom: 3.5rem; background: var(--rosa); }
+.invite { color: var(--crema); padding-bottom: 3.5rem; background: var(--rosa); }   /* arriba, los 122 px del Figma */
 .invite__bg, .closing__bg {
   position: absolute;
   inset: 0;
@@ -569,26 +546,26 @@ img { max-width: 100%; height: auto; display: block; }
           clip-path: polygon(-30% -60%, 130% -60%, 130% 50%, 97.2% 50.1%, 93.8% 50.4%, 90.2% 51.4%, 65.3% 72%, 35.5% 72%, 10% 51.6%, 7.6% 50.7%, 2.8% 50%, -30% 50%);
 }
 
-/* Tarjeta del calendario: posición de Variant3 (adentro) y giro de 5° */
+/* Tarjeta del calendario ("Frame 97" del Figma, 738 × 790): arranca adentro del sobre, con el mismo giro de 5°.
+   Las medidas de adentro van en cqw: 1cqw = 1 % del ancho de la tarjeta. */
 .sobre__cal {
   position: absolute;
-  left: 19.94%;
+  left: 10.8%;
   top: 58.8%;
-  width: 57.88%;
-  height: 47.4%;
+  width: 72%;
+  aspect-ratio: 738 / 790;
   container-type: inline-size;
   transform-origin: 0 0;
   transform: rotate(-5deg);
   opacity: 0;
   transition: opacity 0.35s ease-out, transform 0.75s cubic-bezier(0.3, 0.7, 0.2, 1);
 }
-.sobre__puntilla { position: absolute; left: -27.7%; top: -24.05%; width: 152.9%; height: 148.6%; max-width: none; }
+/* Papel con las esquinas recortadas y el doble filete (vector del Figma) */
+.sobre__tarjeta { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
 .sobre__papel {
   position: absolute;
-  left: -0.8%; top: -0.16%;
-  width: 101.6%; height: 100.3%;
-  padding: 5.8cqw 5.1cqw 0;
-  background: rgba(240, 234, 214, 0.8);
+  inset: 0;
+  padding: 17.2cqw 0 0 11.92cqw;
   color: var(--tinta);
   text-align: left;
 }
@@ -598,7 +575,7 @@ img { max-width: 100%; height: auto; display: block; }
 .sobre[data-state] .sobre__frente,
 .sobre[data-state] .sobre__cal { opacity: 1; }
 /* Variant2: el calendario sale del sobre (queda con el borde de abajo metido en la muesca, no suelto) */
-.sobre[data-state="afuera"] .sobre__cal { transform: translate(-3.35%, -84.5%) rotate(-5deg); }
+.sobre[data-state="afuera"] .sobre__cal { transform: translateY(-82.4%) rotate(-5deg); }
 
 .sobre__hand {
   position: absolute;
@@ -619,23 +596,33 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ---------- Calendario (tipografía y medidas del Figma) ---------- */
 
-.cal__month { margin: 0 0 3.4cqw; font-family: var(--serif); font-size: 9.3cqw; line-height: 1.1; }
-.cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 2.2cqw; font-family: var(--serif); font-variant-numeric: lining-nums; text-align: center; }
+.cal__month { margin: 0 0 3.4cqw; font-family: var(--serif); font-size: 7.9cqw; line-height: 0.97; }
+/* Siete columnas de 62,86 px cada 82,9 px; filas cada 76,5 px; filete fino bajo los días de la semana */
+.cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 8.517cqw);
+  column-gap: 2.715cqw;
+  row-gap: 1.85cqw;
+  width: 75.91cqw;
+  font-family: var(--serif);
+  font-variant-numeric: lining-nums;
+  text-align: center;
+  background: linear-gradient(var(--tinta), var(--tinta)) 0 7.78cqw / 100% max(0.6px, 0.124cqw) no-repeat;
+}
 .cal__head {
   display: grid;
   place-items: center;
-  height: 9.1cqw;
-  margin-bottom: 1.2cqw;
+  height: 7.78cqw;
+  margin-bottom: 0.86cqw;
   font-weight: 500;
-  font-size: 3.5cqw;
-  border-bottom: 1px solid rgba(42, 46, 26, 0.45);
+  font-size: 2.96cqw;
 }
-.cal__day { position: relative; display: grid; place-items: center; height: 10.1cqw; font-weight: 500; font-size: 5.8cqw; }
+.cal__day { position: relative; display: grid; place-items: center; height: 8.517cqw; font-weight: 700; font-size: 4.94cqw; color: rgba(42, 46, 26, 0.8); }
 .cal__day--mark { color: var(--crema); z-index: 0; }
 .cal__day--mark::before {
   content: "";
   position: absolute;
-  inset: -4% 4%;
+  inset: 3.8% -1.5%;
   z-index: -1;
   background: var(--tinta);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.5S1 14.6 1 7.2A5.7 5.7 0 0 1 12 4.3 5.7 5.7 0 0 1 23 7.2c0 7.4-11 14.3-11 14.3z'/%3E%3C/svg%3E") center / contain no-repeat;
@@ -852,6 +839,17 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
   color: var(--crema);
 }
+/* Como en el Figma: la franja de arriba de la foto, espejada y desenfocada (9 px sobre 1080), bajo el rosa al 69 % */
+.closing__bg {
+  inset: -14px;
+  width: calc(100% + 28px);
+  height: calc(100% + 28px);
+  max-width: none;
+  object-position: 50% 0;
+  transform: scaleY(-1);
+  filter: blur(clamp(3.5px, 0.83vw, 9px));
+}
+.closing__veil { position: absolute; inset: 0; z-index: -2; background: rgba(184, 113, 119, 0.69); }
 .closing__text { margin: 0; font-size: clamp(1.05rem, 4.4vw, 1.25rem); letter-spacing: 0.02em; }
 
 /* ============ Pétalos ============ */
@@ -902,14 +900,15 @@ img { max-width: 100%; height: auto; display: block; }
 /* ============ Tablet y PC ============ */
 
 @media (min-width: 768px) {
-  .section { --gap: 2.4rem; padding: 7rem 2.5rem 7.5rem; }
-  .section--under-lace { padding-top: calc(var(--lace-h) * 0.86 + 4rem); }
-  .section--over-lace  { padding-bottom: calc(var(--lace-h) * 0.86 + 4.5rem); }
-  .section--airy { padding-top: 9rem; padding-bottom: calc(var(--lace-h) * 0.14 + 8.5rem); }
+  .section { --gap: 2.4rem; padding: 4.5rem 2.5rem; }
+  .section--prog { padding-top: 6rem; padding-bottom: 5rem; }
+  .section--airy { padding-top: 7.5rem; padding-bottom: 7.5rem; }
+  .section--form { padding-top: 6rem; padding-bottom: 8rem; }
+  .invite { padding-bottom: 5.5rem; }
   :root { --title-size: clamp(3.1rem, 5vw, 4.2rem); }
   .title--wide { max-width: 30ch; font-size: clamp(2.3rem, 3.8vw, 3.1rem); }
   .lead { font-size: clamp(1.4rem, 1.9vw, 1.65rem); max-width: 40rem; }
-  .venue { width: min(100%, 620px); margin: 0; }
+  .venue-logo { width: 128px; }
   .orn--corazon, .orn--voluta { width: 230px; }
   .orn--divisor { width: 128px; }
   .body { font-size: clamp(1.2rem, 1.6vw, 1.4rem); line-height: 1.65; max-width: 40rem; }
@@ -917,7 +916,7 @@ img { max-width: 100%; height: auto; display: block; }
   .detail { font-size: clamp(1.6rem, 2.4vw, 2rem); }
   .btn { font-size: 1.12rem; padding-inline: 2.2rem; }
 
-  .hero__inner { max-width: 820px; gap: 1.8rem; }
+  .hero__inner { max-width: 820px; --g: 3.4rem; }
   .eyebrow { font-size: clamp(1.6rem, 2.4vw, 2rem); }
   .names__n { font-size: clamp(6rem, 9vw, 9rem); }
   .names__y { font-size: clamp(5.6rem, 8.5vw, 8.5rem); }
@@ -955,10 +954,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (min-width: 1200px) {
-  .section { padding: 8.5rem 3rem 9rem; }
-  .section--under-lace { padding-top: calc(var(--lace-h) * 0.86 + 5rem); }
-  .section--over-lace  { padding-bottom: calc(var(--lace-h) * 0.86 + 5.5rem); }
-  .section--airy { padding-top: 10rem; padding-bottom: calc(var(--lace-h) * 0.14 + 9.5rem); }
+  .section { padding: 5.5rem 3rem; }
+  .section--prog { padding-top: 7rem; padding-bottom: 6rem; }
+  .section--airy { padding-top: 9rem; padding-bottom: 9rem; }
+  .section--form { padding-top: 7rem; padding-bottom: 9rem; }
+  .invite { padding-bottom: 6.5rem; }
   :root { --title-size: 4.5rem; }
   .title--wide { font-size: 3.4rem; }
   .body, .notes { font-size: 1.45rem; }
