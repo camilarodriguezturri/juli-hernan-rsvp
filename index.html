@@ -26,8 +26,9 @@
 <link rel="preload" as="image" href="assets/inicio-sello.webp">
 <link rel="preload" as="image" href="assets/inicio-fondo.webp" media="(max-aspect-ratio: 1/1)">
 <link rel="preload" as="image" href="assets/inicio-fondo-ancho.webp" media="(min-aspect-ratio: 1001/1000)">
-<link rel="preload" as="image" href="assets/encaje.webp">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="preload" as="image" href="assets/marco-fondo-crema.webp">
+<link rel="preload" as="image" href="assets/ornaments/marco-rosa.svg">
+<link rel="stylesheet" href="style.css?v=3">
 <link rel="icon" href="data:,">
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
@@ -50,9 +51,9 @@
   </picture>
   <!-- 2 · Velo #685454 al 40 % -->
   <span class="intro__velo" aria-hidden="true"></span>
-  <!-- 3 · Puntillas: abajo (espejada) y arriba -->
-  <span class="puntilla puntilla--intro" aria-hidden="true"></span>
-  <span class="puntilla puntilla--intro-top" aria-hidden="true"></span>
+  <!-- 3 · Franjas "marco" en crema: arriba y abajo (girada), por encima de todas las capas -->
+  <span class="marco marco--intro marco--intro-top" aria-hidden="true"></span>
+  <span class="marco marco--intro marco--intro-bottom" aria-hidden="true"></span>
   <!-- 4 · Sobre, sello y velo #D9D9D9 al 20 % encima de los dos -->
   <div class="intro__env">
     <img class="intro__paper" src="assets/inicio-sobre.webp" alt="" width="1128" height="1045">
@@ -80,7 +81,7 @@
     <span class="orn orn--fleurons hero__orn hero-in" style="--d:1" aria-hidden="true"></span>
     <span class="rule rule--light hero-in" style="--d:2" aria-hidden="true"></span>
     <h1 class="names hero-in hero-in--blur" style="--d:3">
-      <span class="names__n">Juli</span><span class="names__y">y</span><span class="names__n">Hernán</span>
+      <span class="names__n">Julieta</span><span class="names__y">y</span><span class="names__n">Hernán</span>
     </h1>
     <p class="hero__date hero-in" style="--d:5">26 . 12 . 2026</p>
     <span class="rule rule--light hero-in" style="--d:6" aria-hidden="true"></span>
@@ -270,7 +271,7 @@
 <footer class="closing" id="cierre">
   <img class="closing__bg" src="assets/flores-fondo.jpg" alt="" width="1000" height="1250" loading="lazy">
   <div class="closing__veil" aria-hidden="true"></div>
-  <p class="closing__text" data-reveal>Con amor, Juli &amp; Hernán</p>
+  <p class="closing__text" data-reveal>Con amor, Julieta &amp; Hernán</p>
 </footer>
 
 </main>

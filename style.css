@@ -9,7 +9,6 @@
   --papel: #FAF6EC;
   --durazno: #EBD9C7;
 
-  --lace-h: min(21.76vw, 118px);     /* alto de la puntilla de la pantalla inicial: 235/1080 del ancho */
   --marco-h: min(11.3vw, 76px);      /* alto de la franja entre secciones: 122/1080 del ancho, como en el Figma */
   --title-size: clamp(2.25rem, 8.8vw, 3.3rem);
 
@@ -159,29 +158,21 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .marco--hero { position: absolute; left: 0; right: 0; top: 0; }
 
-/* ============ Puntilla de la pantalla inicial (encaje del Figma) ============ */
-
-.puntilla {
-  display: block;
-  position: relative;
-  z-index: 3;
-  height: 0;
-  pointer-events: none;
-}
-.puntilla::before {
-  content: "";
+/* Pantalla inicial: la misma franja en crema #F0EAD6 con la textura en multiplicar
+   (horneada en marco-fondo-crema.webp) y el ornamento en rosa #B87177, arriba y abajo
+   (la de abajo girada 180°), por encima de todas las capas, como en "pantalla inicio". */
+.marco--intro {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
-  height: var(--lace-h);
-  background: url(assets/encaje.webp) left top / auto 100% repeat-x;
+  z-index: 6;
+  height: var(--band-h);
+  background:
+    url(assets/ornaments/marco-rosa.svg) center / auto 50.82% no-repeat,
+    #CDC8B7 url(assets/marco-fondo-crema.webp) center / auto 100% repeat-x;
 }
-/* Pantalla inicial: una puntilla arriba y otra espejada abajo, las dos enteras (como en el Figma) */
-.puntilla--intro { position: absolute; left: 0; right: 0; bottom: 0; }
-.puntilla--intro::before { top: auto; bottom: 0; transform: scaleY(-1); }
-.puntilla--intro-top { position: absolute; left: 0; right: 0; top: 0; }
-.puntilla--intro-top::before { top: 0; }
+.marco--intro-top { top: 0; }
+.marco--intro-bottom { bottom: 0; transform: rotate(180deg); }
 
 /* ============ Botones ============ */
 
@@ -210,9 +201,9 @@ img { max-width: 100%; height: auto; display: block; }
 
 .intro {
   /* Medidas del frame "pantalla inicio" (1079 × 1918): el sobre ocupa 1128/1079 del ancho.
-     En pantallas bajas o anchas se achica para entrar entre las dos puntillas. */
-  --lace-h: min(21.76vw, 118px, 15vh);
-  --env-w: min(104.54vw, (100vh - 2 * var(--lace-h)) * 1.125, 760px);
+     En pantallas bajas o anchas se achica para entrar entre las dos franjas. */
+  --band-h: min(11.3vw, 76px, 8vh);    /* 122/1080 del ancho, como la franja entre secciones */
+  --env-w: min(104.54vw, (100vh - 2 * var(--band-h)) * 1.125, 760px);
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -291,7 +282,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: absolute;
   left: 0; right: 0;
   z-index: 6;
-  top: calc(75.15% + var(--env-w) * 0.156 - var(--lace-h) / 2);   /* a mitad de camino entre el sobre y la puntilla */
+  top: calc(75.15% + var(--env-w) * 0.156 - var(--band-h) / 2);   /* a mitad de camino entre el sobre y la franja */
   margin: 0;
   padding: 0 1.5rem;
   transform: translateY(-50%);
@@ -394,18 +385,24 @@ img { max-width: 100%; height: auto; display: block; }
 .hero__orn { color: var(--crema); width: min(34vw, 170px); margin-bottom: calc(var(--g) * -0.208); }
 .hero__orn.orn--flip { margin-top: calc(var(--g) * -0.208); margin-bottom: 0; }
 
+/* "Julieta y Hernan" (Frame 98): cajas de 360, 142 y 479 px, solapadas 25 px, con los nombres
+   a 154,87 px y la "y" a 185,84 px sobre 1080 de ancho. Todo en em del tamaño de los nombres. */
 .names {
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: clamp(2.6rem, 14.34vw, 5.6rem);
   font-weight: 400;
   line-height: 1.2;
+  text-align: center;
   white-space: nowrap;
   text-shadow: 0 2px 16px rgba(60, 30, 35, 0.25);
 }
-.names__n { font-family: var(--script); font-size: clamp(3.6rem, 16.5vw, 6.8rem); }
-.names__y { font-family: var(--script-y); font-size: clamp(3.4rem, 16vw, 6.4rem); margin: 0 0.12em; transform: translateY(0.12em); }
+.names__n { flex: none; font-family: var(--script); }
+.names__n:first-child { width: 2.325em; margin-right: -0.161em; }
+.names__n:last-child { width: 3.093em; margin-right: -0.278em; }   /* en el Figma "Hernan" sobresale 43 px del grupo de 888 */
+.names__y { flex: none; font-family: var(--script-y); font-size: 1.2em; line-height: 0.97; width: 0.764em; margin-right: -0.1345em; }
 
 .hero__date {
   margin: 0;
@@ -918,8 +915,7 @@ img { max-width: 100%; height: auto; display: block; }
 
   .hero__inner { max-width: 820px; --g: 3.4rem; }
   .eyebrow { font-size: clamp(1.6rem, 2.4vw, 2rem); }
-  .names__n { font-size: clamp(6rem, 9vw, 9rem); }
-  .names__y { font-size: clamp(5.6rem, 8.5vw, 8.5rem); }
+  .names { font-size: clamp(5.4rem, 9vw, 8.2rem); }
   .orn--fleurons { width: 230px; }
 
   .sobre { --w: min(48vw, 540px); }
