@@ -1,6 +1,6 @@
 // URL de la Web App de Google Apps Script que escribe en la planilla del cliente.
 // (Extensiones > Apps Script > Implementar > Gestionar implementaciones.)
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1G0TxAklDn_VqBO2cArN2dWUHh-_ShX_DkEjD2U9gu3I1NZySBk6Gn2ETQXu2ujY/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-yurNZz7_sXfoPuVSOYQ9Ck2LCrQagyIE2VWUculvVJebCAammELZ0_0BQTMz5cPM/exec";
 
 const form = document.getElementById('rsvp-form');
 const submitBtn = document.getElementById('submit-btn');

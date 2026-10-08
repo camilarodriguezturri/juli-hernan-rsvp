@@ -13,6 +13,8 @@
  *    lápiz (editar) > Versión: "Nueva versión" > Implementar. Así la URL no cambia.
  */
 
+// Planilla "Confirmaciones — Julieta y Hernán" (Drive de estfngrd@gmail.com).
+const SPREADSHEET_ID = '1ZxHxvR5zaRRDe9tLqB2OSinZglDHEXZggim2nQo_2bg';
 const SHEET_NAME = 'Respuestas';
 const HEADERS = [
   'Fecha',
@@ -24,7 +26,7 @@ const HEADERS = [
 ];
 
 function getSheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   let sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
