@@ -1,8 +1,9 @@
 // Música de fondo: intenta sonar apenas se abre la página (silenciada,
 // como piden los navegadores) y se activa con el primer toque/clic del
 // visitante. El botón flotante permite pausarla o volver a activarla.
-// El volumen se maneja con Web Audio (en iPhone audio.volume no tiene efecto):
-// entra con un fundido suave y, a los 15 s de escucha, baja a la mitad.
+// El archivo ya viene grabado bajo (-14 dB), así suena suave también en iPhone,
+// donde audio.volume no tiene efecto. En el resto entra con un fundido y,
+// a los 15 s de escucha, baja a la mitad.
 // Si el visitante cambia de pestaña, bloquea el celular o cierra la página, se pausa.
 (function () {
   const audio = document.getElementById('bg-music');
@@ -10,38 +11,25 @@
   const icon = document.getElementById('music-icon');
   if (!audio || !toggleBtn) return;
 
-  const VOL = 0.18;          // volumen inicial (0 a 1)
-  const VOL_BAJO = VOL / 2;  // a los 15 s, la mitad
+  const VOL = 1;            // el archivo ya está bajado; 1 = su volumen grabado
+  const VOL_BAJO = 0.5;      // a los 15 s, la mitad
   const FADE_IN = 2.5;       // segundos
   const FADE_DOWN = 4;       // segundos
   const BAJAR_A_LOS = 15000; // ms de escucha con la página visible
 
   let unlocked = false;
   let userPaused = false;    // pausada a propósito con el botón
-  let ctx = null, gain = null;
-  let listened = 0, since = 0, lowerTimer = null, lowered = false;
+  let listened = 0, since = 0, lowerTimer = null, lowered = false, fadeRaf = 0;
 
-  audio.volume = VOL; // respaldo si no hay Web Audio
-
-  function setupGraph() {
-    if (ctx) return;
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return;
-    try {
-      ctx = new AC();
-      gain = ctx.createGain();
-      gain.gain.value = 0;
-      ctx.createMediaElementSource(audio).connect(gain).connect(ctx.destination);
-      audio.volume = 1; // el volumen real lo da el gain
-    } catch (e) { ctx = null; gain = null; audio.volume = VOL; }
-  }
-
+  // Fundido con audio.volume (en iPhone se ignora y queda el volumen del archivo).
   function rampTo(v, secs) {
-    if (!gain) return;
-    const t = ctx.currentTime;
-    gain.gain.cancelScheduledValues(t);
-    gain.gain.setValueAtTime(gain.gain.value, t);
-    gain.gain.linearRampToValueAtTime(v, t + secs);
+    cancelAnimationFrame(fadeRaf);
+    const from = audio.volume, t0 = performance.now();
+    (function step(now) {
+      const k = Math.min(1, (now - t0) / (secs * 1000));
+      try { audio.volume = from + (v - from) * k; } catch (e) { return; }
+      if (k < 1) fadeRaf = requestAnimationFrame(step);
+    })(t0);
   }
 
   // Cuenta solo el tiempo que suena con la página a la vista.
@@ -52,7 +40,6 @@
       lowerTimer = null;
       lowered = true;
       rampTo(VOL_BAJO, FADE_DOWN);
-      if (!gain) audio.volume = VOL_BAJO;
     }, Math.max(0, BAJAR_A_LOS - listened));
   }
   function stopCount() {
@@ -71,10 +58,8 @@
 
   function play() {
     if (document.hidden) return;
-    setupGraph();
-    if (ctx && ctx.state === 'suspended') ctx.resume();
     audio.muted = false;
-    if (gain) gain.gain.value = 0;
+    audio.volume = 0;
     audio.play()
       .then(() => { setPlayingUI(true); rampTo(lowered ? VOL_BAJO : VOL, FADE_IN); startCount(); })
       .catch(() => setPlayingUI(false));
