@@ -21,10 +21,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Monsieur+La+Doulaise&family=Miss+Fajardose&family=Pochaevsk&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/sobre-cerrado.webp">
-<link rel="preload" as="image" href="assets/sello.webp">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Monsieur+La+Doulaise&family=Miss+Fajardose&family=Pochaevsk&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/inicio-sobre.webp">
+<link rel="preload" as="image" href="assets/inicio-sello.webp">
+<link rel="preload" as="image" href="assets/inicio-fondo.webp" media="(max-aspect-ratio: 1/1)">
+<link rel="preload" as="image" href="assets/inicio-fondo-ancho.webp" media="(min-aspect-ratio: 1001/1000)">
+<link rel="preload" as="image" href="assets/marco-fondo-crema.webp">
+<link rel="preload" as="image" href="assets/ornaments/marco-rosa.svg">
+<link rel="stylesheet" href="style.css?v=3">
 <link rel="icon" href="data:,">
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
@@ -37,12 +41,27 @@
   <span id="music-icon">🎵</span>
 </button>
 
-<!-- ============ 01 · Sobre ============ -->
+<!-- ============ 01 · Sobre ============
+     Mismas capas y mismo orden que el frame "pantalla inicio" del Figma (de abajo hacia arriba). -->
 <div class="intro" id="intro" role="button" tabindex="0" aria-label="Abrir la invitación">
+  <!-- 1 · Foto de lirios vista a través del vidrio acanalado (tiras de 60 px con efecto Glass) -->
+  <picture class="intro__fondo">
+    <source media="(min-aspect-ratio: 1001/1000)" srcset="assets/inicio-fondo-ancho.webp" width="1920" height="1200">
+    <img src="assets/inicio-fondo.webp" alt="" width="1618" height="2877">
+  </picture>
+  <!-- 2 · Velo #685454 al 40 % -->
+  <span class="intro__velo" aria-hidden="true"></span>
+  <!-- 3 · Franjas "marco" en crema: arriba y abajo (girada), por encima de todas las capas -->
+  <span class="marco marco--intro marco--intro-top" aria-hidden="true"></span>
+  <span class="marco marco--intro marco--intro-bottom" aria-hidden="true"></span>
+  <!-- 4 · Sobre, sello y velo #D9D9D9 al 20 % encima de los dos -->
   <div class="intro__env">
-    <img class="intro__paper" src="assets/sobre-cerrado.webp" alt="" width="900" height="645">
-    <img class="intro__seal" src="assets/sello.webp" alt="Sello de lacre con las iniciales J y H" width="520" height="540">
+    <img class="intro__paper" src="assets/inicio-sobre.webp" alt="" width="1128" height="1045">
+    <img class="intro__seal" src="assets/inicio-sello.webp" alt="Sello de lacre con las iniciales J y H" width="604" height="730">
+    <span class="intro__env-velo" aria-hidden="true"></span>
   </div>
+  <!-- 5 · Capa de arriba: #ABABAB al 18 % con ruido -->
+  <span class="intro__grano" aria-hidden="true"></span>
   <p class="intro__hint">Presioná el sobre para abrirlo</p>
 </div>
 
@@ -50,6 +69,7 @@
 
 <!-- ============ 02 · Portada ============ -->
 <header class="hero" id="inicio">
+  <span class="marco marco--hero" aria-hidden="true"></span>
   <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
     <source src="assets/hero-video.mp4" type="video/mp4">
   </video>
@@ -61,15 +81,11 @@
     <span class="orn orn--fleurons hero__orn hero-in" style="--d:1" aria-hidden="true"></span>
     <span class="rule rule--light hero-in" style="--d:2" aria-hidden="true"></span>
     <h1 class="names hero-in hero-in--blur" style="--d:3">
-      <span class="names__n">Juli</span><span class="names__y">y</span><span class="names__n">Hernán</span>
+      <span class="names__n">Julieta</span><span class="names__y">y</span><span class="names__n">Hernán</span>
     </h1>
-    <figure class="lace hero-in hero-in--scale" style="--d:5">
-      <img class="lace__frame" src="assets/marco-encaje.webp" alt="" width="900" height="1086">
-      <span class="lace__window"><img class="lace__photo" src="assets/ramo-velo.jpg" alt="Ramo de novia con velo" width="735" height="1080"></span>
-    </figure>
-    <p class="hero__date hero-in" style="--d:7">26 . 12 . 2026</p>
-    <span class="rule rule--light hero-in" style="--d:8" aria-hidden="true"></span>
-    <span class="orn orn--fleurons orn--flip hero__orn hero-in" style="--d:9" aria-hidden="true"></span>
+    <p class="hero__date hero-in" style="--d:5">26 . 12 . 2026</p>
+    <span class="rule rule--light hero-in" style="--d:6" aria-hidden="true"></span>
+    <span class="orn orn--fleurons orn--flip hero__orn hero-in" style="--d:7" aria-hidden="true"></span>
   </div>
 
   <a class="scroll-cue" href="#ubicacion" aria-label="Seguir bajando">
@@ -78,15 +94,19 @@
 </header>
 
 <!-- ============ 03 · Ubicación ============ -->
-<section class="section cream" id="ubicacion">
-  <span class="orn orn--flor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
+<div class="marco" aria-hidden="true"></div>
+<section class="section peach" id="ubicacion">
+  <span class="orn orn--corazon sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
   <h2 class="title" data-reveal>Ubicación</h2>
-  <p class="body" data-reveal>Sábado 26 de diciembre · 18:30 hs<br>Avenida Triunvirato 6386, CABA</p>
-  <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Triunvirato+6386%2C+CABA%2C+Argentina" target="_blank" rel="noopener" data-reveal>Ver en Google Maps</a>
-  <span class="orn orn--fleurons orn--flip sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
+  <span class="orn orn--divisor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
+  <img class="venue-logo" src="assets/el-abierto.svg" alt="El Abierto Eventos" width="216" height="96" data-reveal>
+  <p class="body" data-reveal>Sábado 26 de Diciembre - 18:30 hs<br>Av. Triunvirato 6385, Caba</p>
+  <a class="btn" href="https://maps.app.goo.gl/xGEKhm6i17hTRmzb6" target="_blank" rel="noopener" data-reveal>Ver en Google Maps</a>
+  <span class="orn orn--voluta sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
 </section>
 
 <!-- ============ 04 · Invitación ============ -->
+<div class="marco" aria-hidden="true"></div>
 <section class="section invite" id="invitacion">
   <img class="invite__bg" src="assets/flores-fondo.jpg" alt="" width="1000" height="1250" loading="lazy">
   <div class="invite__veil" aria-hidden="true"></div>
@@ -96,18 +116,20 @@
   <span class="orn orn--fleurons sec-orn sec-orn--cream" data-reveal aria-hidden="true"></span>
   <h2 class="title title--wide" data-reveal>Nos encantaría contar con vos en este día tan especial.</h2>
   <span class="rule rule--light" data-reveal aria-hidden="true"></span>
-  <p class="body body--wide" data-reveal>Queremos compartir con las personas que más queremos el comienzo de esta nueva etapa. Te esperamos para celebrar juntos el día en que nos decimos que sí.</p>
 
   <!-- SOBRE1 (Figma): cerrado → se abre con el calendario adentro → el calendario sale -->
   <div class="sobre" data-sobre data-reveal>
     <button class="sobre__hit" type="button" aria-label="Abrir el sobre para ver el calendario"></button>
     <img class="sobre__cerrado" src="assets/sobre1-cerrado.webp" alt="" width="1000" height="926" loading="lazy">
     <img class="sobre__fondo" src="assets/sobre1-fondo.webp" alt="" width="1000" height="926" loading="lazy">
-    <div class="sobre__cal" role="table" aria-label="Calendario de diciembre de 2026, el sábado 26 marcado con un corazón">
-      <img class="sobre__puntilla" src="assets/sobre1-puntilla.webp" alt="" width="900" height="851" loading="lazy">
-      <div class="sobre__papel">
-        <p class="cal__month">Diciembre</p>
-        <div class="cal__grid" id="cal-grid"></div>
+    <!-- Ranura: recorta el calendario con la forma de la boca del sobre, así solo se ve lo que asoma -->
+    <div class="sobre__ranura">
+      <div class="sobre__cal" role="table" aria-label="Calendario de diciembre de 2026, el sábado 26 marcado con un corazón">
+        <img class="sobre__tarjeta" src="assets/calendario-tarjeta.svg" alt="" width="738" height="790" loading="lazy">
+        <div class="sobre__papel">
+          <p class="cal__month">Diciembre</p>
+          <div class="cal__grid" id="cal-grid"></div>
+        </div>
       </div>
     </div>
     <img class="sobre__frente" src="assets/sobre1-frente.webp" alt="" width="1000" height="926" loading="lazy">
@@ -124,58 +146,89 @@
 </section>
 
 <!-- ============ 05 · Programa ============ -->
-<section class="section cream" id="programa">
-  <span class="orn orn--fleurons sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
-  <h2 class="title title--rose" data-reveal>Programa</h2>
+<div class="marco" aria-hidden="true"></div>
+<section class="section cream section--prog" id="programa">
+  <span class="orn orn--fleurons sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
+  <h2 class="title" data-reveal>Programa</h2>
+  <span class="orn orn--divisor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
 
-  <ol class="timeline" id="timeline">
-    <li class="t-item t-item--icon-left">
-      <span class="t-item__icon"><img src="assets/icons/bienvenida.svg" alt="" width="240" height="240" loading="lazy"></span>
-      <span class="t-item__dot" aria-hidden="true"></span>
-      <span class="t-item__text"><span class="t-item__time">18:30 hs</span><span class="t-item__label">Bienvenida</span></span>
-    </li>
-    <li class="t-item t-item--icon-right">
-      <span class="t-item__icon"><img src="assets/icons/ceremonia.svg" alt="" width="240" height="240" loading="lazy"></span>
-      <span class="t-item__dot" aria-hidden="true"></span>
-      <span class="t-item__text"><span class="t-item__time">19:00 hs</span><span class="t-item__label">Ceremonia</span></span>
-    </li>
-    <li class="t-item t-item--icon-left">
-      <span class="t-item__icon"><img src="assets/icons/recepcion.svg" alt="" width="240" height="240" loading="lazy"></span>
-      <span class="t-item__dot" aria-hidden="true"></span>
-      <span class="t-item__text"><span class="t-item__time">19:30 hs</span><span class="t-item__label">Recepción</span></span>
-    </li>
-    <li class="t-item t-item--icon-right">
-      <span class="t-item__icon"><img src="assets/icons/cena.svg" alt="" width="240" height="240" loading="lazy"></span>
-      <span class="t-item__dot" aria-hidden="true"></span>
-      <span class="t-item__text"><span class="t-item__time">20:30 hs</span><span class="t-item__label">Cena y fiesta</span></span>
-    </li>
-    <li class="t-item t-item--icon-left t-item--wide">
-      <span class="t-item__icon"><img src="assets/icons/fin-de-fiesta.svg" alt="" width="310" height="155" loading="lazy"></span>
-      <span class="t-item__dot" aria-hidden="true"></span>
-      <span class="t-item__text"><span class="t-item__time">03:30 hs</span><span class="t-item__label">Fin de fiesta</span></span>
-    </li>
-  </ol>
+  <!-- La enredadera (fondo de .timeline) crece con el scroll; cada flor se abre cuando la línea llega a su fila. -->
+  <div class="timeline" id="timeline">
+    <div class="timeline__rings" aria-hidden="true">
+      <span class="ring" style="--x:-0.163;--y:-0.003"></span>
+      <span class="ring" style="--x:-0.093;--y:0.036"></span>
+      <span class="ring" style="--x:0.347;--y:0.062"></span>
+      <span class="ring" style="--x:0.427;--y:0.083"></span>
+      <span class="ring" style="--x:0.053;--y:0.091"></span>
+      <span class="ring" style="--x:0.368;--y:0.095"></span>
+      <span class="ring" style="--x:-0.442;--y:0.096"></span>
+      <span class="ring" style="--x:-0.383;--y:0.284"></span>
+      <span class="ring" style="--x:0.382;--y:0.285"></span>
+      <span class="ring" style="--x:-0.355;--y:0.349"></span>
+      <span class="ring" style="--x:-0.435;--y:0.358"></span>
+      <span class="ring" style="--x:0.172;--y:0.362"></span>
+      <span class="ring" style="--x:0.284;--y:0.399"></span>
+      <span class="ring" style="--x:-0.43;--y:0.66"></span>
+      <span class="ring" style="--x:-0.35;--y:0.681"></span>
+      <span class="ring" style="--x:-0.409;--y:0.693"></span>
+      <span class="ring" style="--x:0.421;--y:0.768"></span>
+      <span class="ring" style="--x:0.449;--y:0.833"></span>
+      <span class="ring" style="--x:0.369;--y:0.841"></span>
+      <span class="ring" style="--x:-0.41;--y:1.03"></span>
+      <span class="ring" style="--x:-0.11;--y:1.01"></span>
+      <span class="ring" style="--x:-0.222;--y:1.047"></span>
+    </div>
+    <ol class="timeline__list">
+      <li class="t-item t-item--icon-left">
+        <span class="t-item__icon"><img src="assets/icons/bienvenida.svg" alt="" width="240" height="240" loading="lazy"></span>
+        <span class="t-item__dot" aria-hidden="true"></span>
+        <span class="t-item__text"><span class="t-item__time">18:30 hs</span><span class="t-item__label">Bienvenida</span></span>
+      </li>
+      <li class="t-item t-item--icon-right">
+        <span class="t-item__icon"><img src="assets/icons/ceremonia.svg" alt="" width="240" height="240" loading="lazy"></span>
+        <span class="t-item__dot" aria-hidden="true"></span>
+        <span class="t-item__text"><span class="t-item__time">19:00 hs</span><span class="t-item__label">Ceremonia</span></span>
+      </li>
+      <li class="t-item t-item--icon-left">
+        <span class="t-item__icon"><img src="assets/icons/recepcion.svg" alt="" width="240" height="240" loading="lazy"></span>
+        <span class="t-item__dot" aria-hidden="true"></span>
+        <span class="t-item__text"><span class="t-item__time">19:30 hs</span><span class="t-item__label">Recepción</span></span>
+      </li>
+      <li class="t-item t-item--icon-right">
+        <span class="t-item__icon"><img src="assets/icons/cena.svg" alt="" width="240" height="240" loading="lazy"></span>
+        <span class="t-item__dot" aria-hidden="true"></span>
+        <span class="t-item__text"><span class="t-item__time">20:30 hs</span><span class="t-item__label">Cena y Fiesta</span></span>
+      </li>
+      <li class="t-item t-item--icon-left t-item--wide">
+        <span class="t-item__icon"><img src="assets/icons/manos.svg" alt="" width="299" height="248" loading="lazy"></span>
+        <span class="t-item__dot" aria-hidden="true"></span>
+        <span class="t-item__text"><span class="t-item__time">3:30 hs</span><span class="t-item__label">Fin de Fiesta</span></span>
+      </li>
+    </ol>
+  </div>
 </section>
 
 <!-- ============ 06 · Vestimenta ============ -->
-<section class="section rose" id="vestimenta">
-  <span class="orn orn--flor sec-orn sec-orn--cream" data-reveal aria-hidden="true"></span>
+<div class="marco" aria-hidden="true"></div>
+<section class="section peach section--airy" id="vestimenta">
+  <span class="orn orn--corazon sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
   <h2 class="title" data-reveal>Vestimenta</h2>
-  <p class="body" data-reveal>Nos encantaría verte con ropa elegante de noche para celebrar juntos este día tan especial.</p>
-  <p class="detail" data-reveal>Elegante · Noche</p>
-  <span class="orn orn--fleurons orn--flip sec-orn sec-orn--cream" data-reveal aria-hidden="true"></span>
+  <span class="orn orn--divisor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
+  <p class="detail" data-reveal>Elegante Noche</p>
+  <span class="orn orn--voluta sec-orn sec-orn--rose" data-reveal aria-hidden="true"></span>
 </section>
 
 <!-- ============ 07 · Confirmación ============ -->
-<section class="section cream" id="rsvp">
+<div class="marco" aria-hidden="true"></div>
+<section class="section cream section--form" id="rsvp">
   <span class="orn orn--fleurons sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
   <h2 class="title" data-reveal>Confirmá tu asistencia</h2>
-  <span class="rule rule--ink" data-reveal aria-hidden="true"></span>
-  <p class="body" data-reveal>¡Estás invitad@! Contanos si vas a poder acompañarnos.</p>
+  <span class="rule rule--ink rule--under" data-reveal aria-hidden="true"></span>
+  <p class="lead" data-reveal>¡Estás invitad@! Contanos si vas a poder acompañarnos.</p>
 
   <form id="rsvp-form" novalidate data-reveal>
     <div class="field">
-      <label for="nombre">Tu nombre *</label>
+      <label for="nombre">Tu Nombre *</label>
       <input type="text" id="nombre" name="nombre" required autocomplete="name">
     </div>
 
@@ -208,9 +261,8 @@
     <p class="form-note form-note--error" id="form-error" hidden>Uy, algo falló al enviar. Probá de nuevo en unos segundos.</p>
   </form>
 
-  <span class="rule rule--rose" data-reveal aria-hidden="true"></span>
+  <span class="orn orn--divisor sec-orn sec-orn--ink" data-reveal aria-hidden="true"></span>
   <div class="notes" data-reveal>
-    <p>Completá el formulario con tus datos y contanos si vendrás acompañado/a.</p>
     <p>Si querés sumar a alguien mayor de 18 años, por favor reenviale este formulario para que también confirme su asistencia (con permiso de los novios).</p>
   </div>
 </section>
@@ -218,8 +270,8 @@
 <!-- ============ 08 · Cierre ============ -->
 <footer class="closing" id="cierre">
   <img class="closing__bg" src="assets/flores-fondo.jpg" alt="" width="1000" height="1250" loading="lazy">
-  <div class="invite__veil" aria-hidden="true"></div>
-  <p class="closing__text" data-reveal>Con amor, Juli &amp; Hernán</p>
+  <div class="closing__veil" aria-hidden="true"></div>
+  <p class="closing__text" data-reveal>Con amor, Julieta &amp; Hernán</p>
 </footer>
 
 </main>
@@ -227,6 +279,6 @@
 <script src="envelope.js"></script>
 <script src="effects.js"></script>
 <script src="script.js"></script>
-<script src="music.js?v=3"></script>
+<script src="music.js?v=5"></script>
 </body>
 </html>
